@@ -6,6 +6,8 @@ Kube ("kyu:b") is a web framework for developers and designers alike.
 Kube is built and designed to provide the most flexible yet powerful CSS & JS framework to the community. 
 Unlike many other web frameworks, Kube is great for both super-fast bootstrapping and for a serious cutting edge, future-proof web development.
 
+[See the documentation](https://imperavi.com/kube/docs/) on the website.
+
 ## Supported Browsers 
 
 Kube supports the latest, stable releases of all major browsers:
