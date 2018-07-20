@@ -1,0 +1,132 @@
+// UPLOAD
+// ---------------------------------------------------------------------------
+@import '../vars';
+@import '../mixins';
+
+.upload {
+	@include flex;
+	@include flex-items-middle;
+	@include flex-items-center;
+	@include flex-items-column;
+
+    border: 2px dashed rgba($color-focus, .3);
+    border-radius: $border-radius;
+    height: 120px;
+    cursor: pointer;
+
+    & .upload-placeholder {
+        color: rgba($color-focus, .5);
+        font-style: italic;
+        font-size: $font-size-small;
+    }
+	&:hover,
+	&.is-upload-hover {
+    	border-color: rgba($color-focus, .35);
+    	background-color: rgba($color-focus, .02);
+	}
+	&.is-upload-error {
+    	border-color: rgba($color-error, .35);
+    	background-color: rgba($color-error, .02);
+	}
+}
+.upload-target {
+
+    background-color: rgba($color-focus, .02);
+    border: 1px solid  rgba($color-focus, .1);
+    padding: 6px 8px;
+
+    &:empty {
+        padding: 0;
+        border: none;
+    }
+
+    & .upload-item {
+        @include flex;
+        font-size: $font-size-small;
+        border-bottom: 1px solid rgba($color-black, .05);
+        padding: 4px 0;
+
+        & .close {
+            margin-top: 3px;
+            margin-right: 4px;
+        }
+        & em {
+            font-style: normal;
+            color: rgba($color-black, .5);
+            font-size: $font-size-smaller;
+            margin-left: 4px;
+        }
+        &:last-child {
+            border-bottom-color: transparent;
+        }
+    }
+}
+
+.upload-box {
+	@include clearfix;
+
+	margin-right: -12px;
+    margin-bottom: -12px;
+
+    & .upload-item {
+        float: left;
+        width: 120px;
+        height: 120px;
+    	border: 2px dashed rgba($color-focus, .3);
+    	background-color: #fff;
+    	cursor: pointer;
+    	border-radius: 6px;
+    	position: relative;
+    	font-size: 0;
+    	line-height: 0;
+    	margin-right: 12px;
+    	margin-bottom: 12px;
+
+        &.is-uploaded {
+            border-style: solid;
+            border-color: rgba($color-focus, .35);
+        }
+        & img {
+            position: relative;
+            z-index: 2;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            border-radius: 6px;
+        }
+        & .close {
+            position: absolute;
+            z-index: 3;
+            top: -3px;
+            right: -7px;
+            background-color: $color-error;
+            color: #fff;
+            opacity: 1;
+            &:hover {
+                background-color: $color-black;
+            }
+        }
+    	&:after {
+        	position: absolute;
+        	z-index: 1;
+        	top: 50%;
+        	left: 50%;
+        	margin-left: -12px;
+        	margin-top: -20px;
+        	content: '+';
+        	font-size: 40px;
+        	line-height: 1;
+        	font-weight: normal;
+        	color: rgba($color-focus, .5);
+    	}
+    	&:hover,
+    	&.is-upload-hover {
+        	border-color: rgba($color-focus, .35);
+        	background-color: rgba($color-focus, .02);
+    	}
+    	&.is-upload-error {
+        	border-color: rgba($color-error, .35);
+        	background-color: rgba($color-error, .02);
+    	}
+    }
+}

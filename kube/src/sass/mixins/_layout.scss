@@ -1,0 +1,25 @@
+// container
+@mixin make-container {
+    display: flex;
+    flex: 1;
+
+    @include for-mobile() {
+        flex-direction: column;
+    }
+}
+
+// content
+@mixin make-content {
+    flex: 1;
+    min-width: 0;
+}
+
+// sidebar
+@mixin make-sidebar($width) {
+    @include flex-item-width($width);
+}
+
+// offset
+@mixin make-gap-offset($width) {
+    margin-left: calc($width + #{$grid-gap}) !important;
+}
