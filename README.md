@@ -1,4 +1,4 @@
-# Kube CSS Framework
+# Kube UI Framework
 
 ## What is Kube
 
