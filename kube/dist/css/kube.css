@@ -901,14 +901,14 @@ table.is-unstyled th {
     flex-wrap: nowrap;
     margin-left: 0;
     margin-top: 0; }
+    .is-row + .is-row {
+      margin-top: 0; }
     .is-row > .is-col {
       flex: 0 0 100%;
       width: 100% !important;
       max-width: 100% !important;
       margin-left: 0;
       margin-bottom: 20px; }
-      .is-row > .is-col:last-child {
-        margin-bottom: 0; }
     .is-row.is-bricks > .is-col {
       margin-bottom: 20px; }
     .is-row.is-gapless {
@@ -1316,10 +1316,10 @@ div.is-desc {
 
 form {
   margin-bottom: 20px; }
-  form .is-row {
-    margin-bottom: 20px; }
-    form .is-row > .form-item {
-      margin-bottom: 0; }
+  form .is-row,
+  form .is-col {
+    margin-top: 0;
+    margin-bottom: 0; }
   form span.is-success,
   form div.is-success {
     font-size: 0.75em;
@@ -1334,12 +1334,12 @@ form {
   form div.is-desc {
     margin-bottom: -0.5em; }
 
-.form-item {
+.form-item,
+.form-item.is-col {
   margin-bottom: 20px; }
 
 fieldset > .form-item:last-child,
-fieldset > .is-row:last-child,
-.form-item:last-child {
+fieldset > .is-row:last-child {
   margin-bottom: 0; }
 
 .form-checkboxes label.is-checkbox {

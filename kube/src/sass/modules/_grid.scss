@@ -66,16 +66,15 @@
         margin-left: 0;
         margin-top: 0;
 
+        & + .is-row {
+            margin-top: 0;
+        }
         & > .is-col {
             flex: 0 0 100%;
             width: 100% !important;
             max-width: 100% !important;
             margin-left: 0;
             margin-bottom: $grid-margin;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
         }
         &.is-bricks {
             & > .is-col {

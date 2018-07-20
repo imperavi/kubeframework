@@ -214,11 +214,10 @@ div.is-desc  { margin-top: 0.25em;  }
 form {
     margin-bottom: $form-item-margin;
 
-    & .is-row {
-       margin-bottom: $form-item-margin;
-       & > .form-item {
-           margin-bottom: 0;
-       }
+    & .is-row,
+    & .is-col {
+        margin-top: 0;
+        margin-bottom: 0;
     }
     & span,
     & div {
@@ -240,12 +239,12 @@ form {
     }
 }
 
-.form-item {
+.form-item,
+.form-item.is-col {
     margin-bottom: $form-item-margin;
 }
 fieldset > .form-item:last-child,
-fieldset > .is-row:last-child,
-.form-item:last-child {
+fieldset > .is-row:last-child {
     margin-bottom: 0;
 }
 .form-checkboxes {
