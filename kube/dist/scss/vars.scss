@@ -494,13 +494,13 @@ $message-error-border-color: transparent !default;
 
 // success
 $message-success-background: $color-success !default;
-$message-success-color-text: rgba(#fff, .95) !default;
+$message-success-color-text: $color-black !default;
 $message-success-link-color-hover: rgba(#fff, .7) !default;
 $message-success-border-color: transparent !default;
 
 // focus
 $message-focus-background: $color-focus !default;
-$message-focus-color-text: $color-black !default;
+$message-focus-color-text: rgba(#fff, .95) !default;
 $message-focus-link-color-hover: rgba(#fff, .7) !default;
 $message-focus-border-color: transparent !default;
 

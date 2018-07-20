@@ -2004,14 +2004,14 @@ fieldset > .is-row:last-child {
 
 .message.is-success {
   background: #a6e50f;
-  color: rgba(255, 255, 255, 0.95);
+  color: #111;
   border-color: transparent; }
   .message.is-success a:hover {
     color: rgba(255, 255, 255, 0.7); }
 
 .message.is-focus {
   background: #4da1ff;
-  color: #111;
+  color: rgba(255, 255, 255, 0.95);
   border-color: transparent; }
   .message.is-focus a:hover {
     color: rgba(255, 255, 255, 0.7); }
