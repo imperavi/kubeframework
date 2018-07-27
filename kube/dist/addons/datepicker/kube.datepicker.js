@@ -453,7 +453,7 @@
 (function($K)
 {
     $K.add('class', 'datepicker.box', {
-        mixins: ['dom'],
+        mixing: ['dom'],
         init: function(app, datepicker)
         {
             this.app = app;
@@ -630,7 +630,7 @@
 (function($K)
 {
     $K.add('class', 'datepicker.grid', {
-        mixins: ['dom'],
+        mixing: ['dom'],
         init: function(app, datepicker)
         {
             this.app = app;

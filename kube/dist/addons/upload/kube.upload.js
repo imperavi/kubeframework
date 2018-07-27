@@ -58,7 +58,7 @@
     	{
             if (this.params.type === 'image')
             {
-                this.$box = this.$element.find('.upload-item').last();
+                this.$box = this.$element.find('.upload-item');
             }
             else
             {
@@ -450,7 +450,7 @@
                     $item.append($img);
                     $item.append($hidden);
 
-                    this.$box.before($item);
+                    this.$box.last().before($item);
                 }
                 // single
                 else
