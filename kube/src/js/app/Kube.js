@@ -7,7 +7,7 @@ $K.init = function(options)
 };
 
 // Globals
-$K.version = '7.0';
+$K.version = '7.0.1';
 $K.options = {};
 $K.modules = {};
 $K.services = {};
