@@ -1,12 +1,3 @@
-/*
-    Kube Framework
-    Version 7.0
-    Updated: February 16, 2018
-
-    http://imperavi.com/kube/
-
-    Copyright (c) 2009-2018, Imperavi Ltd.
-*/
 (function() {
 var Ajax = {};
 
@@ -1388,7 +1379,7 @@ $K.add = function(type, name, obj)
         $K.lang = $K.extend(true, {}, $K.lang, obj.translations);
     }
 
-    // mixin
+    // inherits
     if (type === 'mixin')
     {
         $K[$K.env[type]][name] = obj;
@@ -1399,12 +1390,12 @@ $K.add = function(type, name, obj)
         var F = function() {};
         F.prototype = obj;
 
-        // mixins
-        if (obj.mixins)
+        // mixing
+        if (obj.mixing)
         {
-            for (var i = 0; i < obj.mixins.length; i++)
+            for (var i = 0; i < obj.mixing.length; i++)
             {
-                $K.inherit(F, $K.mixins[obj.mixins[i]]);
+                $K.inherit(F, $K.mixins[obj.mixing[i]]);
             }
         }
 
@@ -2783,7 +2774,7 @@ $K.add('service', 'modal', {
 });
 
 $K.add('class', 'modal.form', {
-    mixins: ['dom'],
+    mixing: ['dom'],
     init: function(app, element)
     {
         this.app = app;
@@ -2827,7 +2818,7 @@ $K.add('class', 'modal.form', {
     }
 });
 $K.add('class', 'modal.element', {
-    mixins: ['dom'],
+    mixing: ['dom'],
     init: function(app, template)
     {
         this.app = app;
