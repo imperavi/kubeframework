@@ -1,7 +1,7 @@
 .autocomplete {
   position: absolute;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(17, 17, 19, 0.11), 0 1px 3px rgba(17, 17, 19, 0.08);
+  box-shadow: 0 1px 3px rgba(17, 17, 19, 0.15);
   padding: 0;
   max-height: 200px;
   border-bottom-left-radius: 0.1875rem;
@@ -57,7 +57,7 @@
   padding: 10px 16px;
   border: 0 solid transparent;
   border-radius: 0.1875rem;
-  box-shadow: 0 10px 30px rgba(17, 17, 19, 0.07), 0 6px 12px rgba(17, 17, 19, 0.07); }
+  box-shadow: 0 6px 24px rgba(17, 17, 19, 0.12); }
   .datepicker.is-embed {
     border: 1px solid rgba(17, 17, 19, 0.05);
     max-width: 308px;

@@ -91,9 +91,9 @@ $base-line-large: 1.45 !default;
 $base-line-ems: $base-line * 1em !default;
 
 // Box Shadow
-$shadow-1: 0 2px 4px rgba($color-black, .11), 0 1px 3px rgba($color-black, .08) !default;
-$shadow-2: 0 10px 30px rgba($color-black, .07), 0 6px 12px rgba($color-black, .07) !default;
-$shadow-3: 0 20px 40px rgba($color-black, .1), 0 15px 35px rgba($color-black, .15) !default;
+$shadow-1: 0 1px 3px rgba($color-black, .15) !default;
+$shadow-2: 0 6px 24px rgba($color-black, .12) !default;
+$shadow-3: 0 15px 30px rgba($color-black, .2) !default;
 
 // Border Radius
 $border-radius: (3/16 * 1rem) !default; // 3px
