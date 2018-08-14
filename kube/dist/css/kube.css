@@ -2135,6 +2135,15 @@ fieldset > .is-row:last-child {
   .is-hidden-print {
     display: none; } }
 
+.is-shadow-1 {
+  box-shadow: 0 1px 3px rgba(17, 17, 19, 0.15); }
+
+.is-shadow-2 {
+  box-shadow: 0 6px 24px rgba(17, 17, 19, 0.12); }
+
+.is-shadow-3 {
+  box-shadow: 0 15px 30px rgba(17, 17, 19, 0.2); }
+
 .is-scrollable {
   overflow-y: auto;
   white-space: nowrap; }

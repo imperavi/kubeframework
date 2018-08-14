@@ -121,6 +121,11 @@
 	.is-hidden-print { display: none; }
 }
 
+// Shadow
+.is-shadow-1 { box-shadow: $shadow-1; }
+.is-shadow-2 { box-shadow: $shadow-2; }
+.is-shadow-3 { box-shadow: $shadow-3; }
+
 // Scroll
 .is-scrollable {
     overflow-y: auto;
