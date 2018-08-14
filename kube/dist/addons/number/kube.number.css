@@ -17,16 +17,16 @@
     justify-content: center;
     vertical-align: middle;
     cursor: pointer;
-    color: #111;
+    color: #111113;
     font-size: 0.875em;
     text-decoration: none;
     text-align: center;
     -webkit-user-select: none;
     user-select: none;
-    border: 1px solid rgba(17, 17, 17, 0.1); }
+    border: 1px solid rgba(17, 17, 19, 0.1); }
     .input-number .is-up:hover,
     .input-number .is-down:hover {
-      background-color: rgba(17, 17, 17, 0.04); }
+      background-color: rgba(17, 17, 19, 0.04); }
   .input-number .is-up {
     border-left-color: transparent;
     margin-left: -1px; }
@@ -50,6 +50,6 @@
       right: 0;
       border-bottom-color: transparent; }
     .input-number .input-number-nav .is-down {
-      border-right: 1px solid rgba(17, 17, 17, 0.1);
+      border-right: 1px solid rgba(17, 17, 19, 0.1);
       right: 0;
       bottom: 0; }

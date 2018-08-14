@@ -4,9 +4,9 @@
   padding: 10px 16px;
   border: 0 solid transparent;
   border-radius: 0.1875rem;
-  box-shadow: 0 10px 30px rgba(17, 17, 17, 0.07), 0 6px 12px rgba(17, 17, 17, 0.07); }
+  box-shadow: 0 10px 30px rgba(17, 17, 19, 0.07), 0 6px 12px rgba(17, 17, 19, 0.07); }
   .datepicker.is-embed {
-    border: 1px solid rgba(17, 17, 17, 0.05);
+    border: 1px solid rgba(17, 17, 19, 0.05);
     max-width: 308px;
     position: static;
     box-shadow: none; }
@@ -17,7 +17,7 @@
 .datepicker-control {
   width: 24px;
   height: 24px;
-  color: rgba(17, 17, 17, 0.75);
+  color: rgba(17, 17, 19, 0.75);
   text-align: center;
   cursor: pointer;
   -webkit-user-select: none;
@@ -29,7 +29,7 @@
 .datepicker-month-box {
   flex: 1;
   font-size: 13px;
-  color: rgba(17, 17, 17, 0.85);
+  color: rgba(17, 17, 19, 0.85);
   text-align: center;
   padding: 2px 0; }
   .datepicker-month-box span {
@@ -74,7 +74,7 @@
     margin-top: -1px;
     margin-left: -1px;
     font-size: 10px;
-    color: rgba(17, 17, 17, 0.4); }
+    color: rgba(17, 17, 19, 0.4); }
 
 .datepicker-row:after {
   content: '';
@@ -93,28 +93,28 @@
   border: 1px solid #fff; }
   .datepicker-cell a {
     display: block;
-    color: rgba(17, 17, 17, 0.85);
+    color: rgba(17, 17, 19, 0.85);
     line-height: 39px;
     text-decoration: none;
-    background: rgba(17, 17, 17, 0.03); }
+    background: rgba(17, 17, 19, 0.03); }
   .datepicker-cell a:hover {
-    background: #4da1ff;
+    background: #2c76ee;
     color: #fff; }
   .datepicker-cell.is-out a {
     background-color: transparent;
-    color: rgba(17, 17, 17, 0.4); }
+    color: rgba(17, 17, 19, 0.4); }
   .datepicker-cell.is-out a:hover {
     color: #fff;
-    background-color: #4da1ff; }
+    background-color: #2c76ee; }
   .datepicker-cell.is-selected {
     border-color: #fff; }
     .datepicker-cell.is-selected a {
-      background: #4da1ff;
+      background: #2c76ee;
       color: #fff; }
     .datepicker-cell.is-selected a:hover {
       color: #fff; }
   .datepicker-cell.is-disabled a,
   .datepicker-cell.is-disabled a:hover {
     background-color: #fff;
-    color: rgba(17, 17, 17, 0.3);
+    color: rgba(17, 17, 19, 0.3);
     cursor: default; }

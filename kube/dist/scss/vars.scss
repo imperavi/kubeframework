@@ -40,32 +40,32 @@ $font-family-monospace: monospace, monospace !default;
 // ---------------------------------------------------------------------------
 
 // Grayscale
-$color-black: #111 !default;
+$color-black: #111113 !default;
 $color-inverted: #fff !default;
 
 // Text
-$color-text: #111 !default;
+$color-text: #111113 !default;
 $color-text-secondary: rgba($color-text, .8) !default;
 $color-text-tertiary: rgba($color-text, .6) !default;
 
 // Links
-$color-link: #4da1ff !default;
-$color-link-hover: #ff4a4a !default;
+$color-link: #2c76ee !default;
+$color-link-hover: #f53e53 !default;
 
 // States
-$color-error: #ff4a4a !default;
-$color-success: #a6e50f !default;
-$color-focus: #4da1ff !default;
+$color-error: #f53e53 !default;
+$color-success: #1fbc72 !default;
+$color-focus: #2c76ee !default;
 
 // Accent
-$color-accent: #ff4a4a !default;
+$color-accent: #f53e53 !default;
 $color-highlight: rgba($color-focus, .1) !default;
 
 // Button
-$color-button: #4da1ff !default;
+$color-button: #2c76ee !default;
 
 // Label
-$color-label: #ff4a4a !default;
+$color-label: #f53e53 !default;
 
 
 // =GLOBALS
@@ -494,7 +494,7 @@ $message-error-border-color: transparent !default;
 
 // success
 $message-success-background: $color-success !default;
-$message-success-color-text: $color-black !default;
+$message-success-color-text: #fff !default;
 $message-success-link-color-hover: rgba(#fff, .7) !default;
 $message-success-border-color: transparent !default;
 
