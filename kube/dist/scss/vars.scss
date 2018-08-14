@@ -71,6 +71,11 @@ $color-label: #f53e53 !default;
 // =GLOBALS
 // ---------------------------------------------------------------------------
 
+// Font Metrics
+$letter-height: 12/16;
+$crop-top:  0.5em;
+$crop-bottom: 0.5em;
+
 // Font Size
 $font-size-smaller: 0.75em !default; // 12px
 $font-size-small: 0.875em !default; // 14px

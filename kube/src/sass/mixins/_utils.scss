@@ -7,6 +7,23 @@
     }
 }
 
+// Cropline
+@mixin cropline($line-height: 1.5, $lheight: $letter-height, $ctop: $crop-top, $cbottom: $crop-bottom) {
+    &::before,
+    &::after {
+        content: '';
+        display: block;
+        height: 0;
+        width: 0;
+    }
+    &::before {
+        margin-top: calc((#{$lheight} - #{$line-height}) * #{$ctop});
+    }
+    &::after {
+        margin-bottom: calc((#{$lheight} - #{$line-height}) * #{$cbottom});
+    }
+}
+
 // Transition
 @mixin transition($transition: all linear .2s) {
     -moz-transition: $transition;
