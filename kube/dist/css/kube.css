@@ -2144,6 +2144,18 @@ fieldset > .is-row:last-child {
 .is-shadow-3 {
   box-shadow: 0 15px 30px rgba(17, 17, 19, 0.2); }
 
+.is-border {
+  border: 1px solid rgba(17, 17, 19, 0.05); }
+
+.is-border-top {
+  border-top: 1px solid rgba(17, 17, 19, 0.05); }
+
+.is-border-bottom {
+  border-bottom: 1px solid rgba(17, 17, 19, 0.05); }
+
+.is-border-radius {
+  border-radius: 0.1875rem; }
+
 .is-scrollable {
   overflow-y: auto;
   white-space: nowrap; }

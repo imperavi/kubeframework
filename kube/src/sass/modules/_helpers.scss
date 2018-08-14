@@ -126,6 +126,12 @@
 .is-shadow-2 { box-shadow: $shadow-2; }
 .is-shadow-3 { box-shadow: $shadow-3; }
 
+// Border
+.is-border { border: 1px solid rgba($color-black, .05); }
+.is-border-top { border-top: 1px solid rgba($color-black, .05); }
+.is-border-bottom { border-bottom: 1px solid rgba($color-black, .05); }
+.is-border-radius { border-radius: $border-radius; }
+
 // Scroll
 .is-scrollable {
     overflow-y: auto;
