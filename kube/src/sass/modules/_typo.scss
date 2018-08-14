@@ -33,7 +33,7 @@ h6 {
     line-height: $headings-base-line;
 
     & + * {
-        margin-top: $space-medium;
+        margin-top: $space-small;
     }
     & + h1,
     & + h2,
@@ -132,7 +132,7 @@ dt {
 }
 dl {
     & dd + dt {
-        margin-top: $space-medium;
+        margin-top: $space-small;
     }
 }
 

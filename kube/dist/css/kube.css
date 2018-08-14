@@ -150,7 +150,7 @@ h6 {
   h4 + *,
   h5 + *,
   h6 + * {
-    margin-top: 16px; }
+    margin-top: 8px; }
   h1 + h1,
   h1 + h2,
   h1 + h3,
@@ -325,7 +325,7 @@ dt {
   font-weight: 600; }
 
 dl dd + dt {
-  margin-top: 16px; }
+  margin-top: 8px; }
 
 hr {
   border: none;
