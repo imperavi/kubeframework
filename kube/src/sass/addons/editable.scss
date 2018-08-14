@@ -5,7 +5,7 @@
 
 .editable[placeholder]:empty:before {
     content: attr(placeholder);
-    color: rgba(0, 0, 0, .4);
+    color: rgba($color-black, .4);
     font-weight: normal;
 }
 .editable[placeholder]:empty:focus:before {
