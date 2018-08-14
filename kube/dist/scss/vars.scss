@@ -104,11 +104,37 @@ $controls-height: ((40/(strip-unit($font-size-ui)*16)) * 1em) !default; // 40px 
 // Overlay
 $overlay-background-color: rgba($color-black, .18) !default;
 
-// Space
-$block-space-big: 1.2em !default;
-$block-space-default: .8em !default;
-$block-space-small: .4em !default;
 
+// =SPACE
+// ---------------------------------------------------------------------------
+$space-xxsmall: 2px !default;
+$space-xsmall: 4px !default;
+$space-small: 8px !default;
+$space-medium: 16px !default;
+$space-large: 20px !default;
+$space-xlarge: 24px !default;
+$space-xxlarge: 32px !default;
+$space-xxxlarge: 40px !default;
+$space-huge: 48px !default;
+$space-xhuge: 64px !default;
+$space-xxhuge: 80px !default;
+$space-xxxhuge: 100px !default;
+
+// map
+$map-space: (
+  xxsmall: $space-xxsmall,
+  xsmall: $space-xsmall,
+  small: $space-small,
+  medium: $space-medium,
+  large: $space-large,
+  xlarge: $space-xlarge,
+  xxlarge: $space-xxlarge,
+  xxxlarge: $space-xxxlarge,
+  huge: $space-huge,
+  xhuge: $space-xhuge,
+  xxhuge: $space-xxhuge,
+  xxxhuge: $space-xxxhuge
+);
 
 // =HEADINGS
 // ---------------------------------------------------------------------------

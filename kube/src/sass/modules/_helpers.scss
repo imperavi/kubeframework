@@ -127,7 +127,7 @@
 	height: 0;
 	padding-bottom: 56.25%; // ratio 16:9
 	position: relative;
-	margin-bottom: $block-space-default;
+	margin-bottom: $space-medium;
 	& iframe,
 	& object,
 	& embed {
@@ -139,7 +139,7 @@
 	}
 }
 figure .is-video-container {
-    margin-bottom: $block-space-small;
+    margin-bottom: $space-small;
 }
 
 // Close

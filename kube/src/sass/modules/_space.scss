@@ -1,0 +1,69 @@
+// INSET
+@each $name, $space in $map-space {
+    .is-inset-#{$name} { padding: $space; }
+}
+@include for-mobile {
+    @each $name, $space in $map-space {
+        .is-inset-#{$name}-mobile { padding: $space; }
+    }
+}
+
+// top
+@each $name, $space in $map-space {
+  .is-inset-top-#{$name} { padding-top: $space; }
+}
+@include for-mobile {
+    @each $name, $space in $map-space {
+        .is-inset-top-#{$name}-mobile { padding-top: $space; }
+    }
+}
+
+// bottom
+@each $name, $space in $map-space {
+  .is-inset-bottom-#{$name} { padding-bottom: $space; }
+}
+@include for-mobile {
+    @each $name, $space in $map-space {
+        .is-inset-bottom-#{$name}-mobile { padding-bottom: $space; }
+    }
+}
+
+// left
+@each $name, $space in $map-space {
+  .is-inset-left-#{$name} { padding-left: $space; }
+}
+@include for-mobile {
+    @each $name, $space in $map-space {
+        .is-inset-left-#{$name}-mobile { padding-left: $space; }
+    }
+}
+
+// right
+@each $name, $space in $map-space {
+  .is-inset-right-#{$name} { padding-right: $space; }
+}
+@include for-mobile {
+    @each $name, $space in $map-space {
+        .is-inset-right-#{$name}-mobile { padding-right: $space; }
+    }
+}
+
+// OUTSET
+@each $name, $space in $map-space {
+  .is-outset-#{$name} { margin-left: $space; margin-right: $space; }
+}
+@include for-mobile {
+    @each $name, $space in $map-space {
+        .is-outset-#{$name}-mobile { margin-left: $space; margin-right: $space; }
+    }
+}
+
+// STACK
+@each $name, $space in $map-space {
+  .is-stack-#{$name} { margin-bottom: $space; }
+}
+@include for-mobile {
+    @each $name, $space in $map-space {
+        .is-stack-#{$name}-mobile { margin-bottom: $space; }
+    }
+}

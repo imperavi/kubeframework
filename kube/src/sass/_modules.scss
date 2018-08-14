@@ -1,7 +1,5 @@
 @import "modules/reset";
-@import "modules/print";
 @import "modules/icons";
-@import "modules/helpers";
 @import "modules/typo";
 @import "modules/table";
 @import "modules/grid";
@@ -21,3 +19,8 @@
 @import "modules/modal";
 @import "modules/progress";
 @import "modules/offcanvas";
+
+// utils
+@import "modules/helpers";
+@import "modules/space";
+@import "modules/print";

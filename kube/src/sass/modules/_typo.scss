@@ -33,7 +33,7 @@ h6 {
     line-height: $headings-base-line;
 
     & + * {
-        margin-top: $block-space-default;
+        margin-top: $space-medium;
     }
     & + h1,
     & + h2,
@@ -41,7 +41,7 @@ h6 {
     & + h4,
     & + h5,
     & + h6 {
-        margin-top: $block-space-small;
+        margin-top: $space-small;
     }
 
 }
@@ -66,7 +66,7 @@ ul,
 dl,
 figure,
 address {
-    margin-bottom: $block-space-default;
+    margin-bottom: $space-medium;
 }
 p,
 blockquote,
@@ -84,14 +84,14 @@ form {
     & + h4,
     & + h5,
     & + h6 {
-        margin-top: $block-space-big;
+        margin-top: $space-large;
     }
 }
 
 // Lists
 ul,
 ol {
-    margin-left: $block-space-big;
+    margin-left: $space-large;
 }
 ul ul,
 ul ol,
@@ -110,7 +110,7 @@ nav ul ul,
 nav ul ol,
 nav ol ol,
 nav ol ul {
-    margin-left: $block-space-big;
+    margin-left: $space-large;
 }
 li li {
     font-size: 1em;
@@ -132,7 +132,7 @@ dt {
 }
 dl {
     & dd + dt {
-        margin-top: $block-space-default;
+        margin-top: $space-medium;
     }
 }
 
