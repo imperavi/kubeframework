@@ -481,18 +481,18 @@ a.is-muted:hover {
   transition: all linear 0.2s;
   color: #111113; }
 
-.is-text-large {
+.is-large {
   font-size: 1.3125em;
   line-height: 1.45; }
 
-.is-text-big {
+.is-big {
   font-size: 1.125em;
   line-height: 1.45; }
 
-.is-text-small {
+.is-small {
   font-size: 0.875em; }
 
-.is-text-smaller {
+.is-smaller {
   font-size: 0.75em; }
 
 .is-nowrap,
@@ -2016,13 +2016,13 @@ fieldset > .is-row:last-child {
 .is-relative {
   position: relative; }
 
-.is-large {
+.is-width-large {
   max-width: 1000px; }
 
-.is-medium {
+.is-width-medium {
   max-width: 820px; }
 
-.is-small {
+.is-width-small {
   max-width: 420px; }
 
 .is-10 {
@@ -2090,9 +2090,9 @@ fieldset > .is-row:last-child {
   min-width: 100%; }
 
 @media only screen and (max-width: 767px) {
-  .is-large,
-  .is-medium,
-  .is-small,
+  .is-width-large,
+  .is-width-medium,
+  .is-width-small,
   .is-10,
   .is-20,
   .is-25,
