@@ -309,18 +309,18 @@ a.is-muted:hover {
     @include transition;
     color: $color-black;
 }
-.is-large {
+.is-text-large {
     font-size: $font-size-large;
     line-height: $base-line-large;
 }
-.is-big {
+.is-text-big {
     font-size: $font-size-big;
     line-height: $base-line-big;
 }
-.is-small {
+.is-text-small {
     font-size: $font-size-small;
 }
-.is-smaller {
+.is-text-smaller {
     font-size: $font-size-smaller;
 }
 .is-nowrap,

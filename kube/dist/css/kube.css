@@ -481,18 +481,18 @@ a.is-muted:hover {
   transition: all linear 0.2s;
   color: #111113; }
 
-.is-large {
+.is-text-large {
   font-size: 1.3125em;
   line-height: 1.45; }
 
-.is-big {
+.is-text-big {
   font-size: 1.125em;
   line-height: 1.45; }
 
-.is-small {
+.is-text-small {
   font-size: 0.875em; }
 
-.is-smaller {
+.is-text-smaller {
   font-size: 0.75em; }
 
 .is-nowrap,
@@ -1468,6 +1468,7 @@ fieldset > .is-row:last-child {
     text-decoration: none; }
   .is-navbar nav li + li {
     margin-left: 28px; }
+  .is-navbar nav.is-center,
   .is-navbar nav.is-centered {
     margin-left: auto;
     margin-right: auto; }
@@ -1740,7 +1741,7 @@ fieldset > .is-row:last-child {
     -moz-transition: all linear 0.2s;
     transition: all linear 0.2s;
     color: rgba(17, 17, 19, 0.6); }
-  .message.is-centered {
+  .message.is-center, .message.is-centered {
     left: 50%;
     margin-left: -180px; }
   .message.is-left {
@@ -2001,6 +2002,11 @@ fieldset > .is-row:last-child {
     .is-push-right {
       margin-left: 0; } }
 
+.is-center,
+.is-centered {
+  margin-left: auto;
+  margin-right: auto; }
+
 .is-fixed {
   position: fixed !important;
   top: 0;
@@ -2009,6 +2015,15 @@ fieldset > .is-row:last-child {
 
 .is-relative {
   position: relative; }
+
+.is-large {
+  max-width: 1000px; }
+
+.is-medium {
+  max-width: 820px; }
+
+.is-small {
+  max-width: 420px; }
 
 .is-10 {
   width: 10%;
@@ -2075,6 +2090,9 @@ fieldset > .is-row:last-child {
   min-width: 100%; }
 
 @media only screen and (max-width: 767px) {
+  .is-large,
+  .is-medium,
+  .is-small,
   .is-10,
   .is-20,
   .is-25,

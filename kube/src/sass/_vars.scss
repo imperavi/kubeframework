@@ -104,6 +104,12 @@ $controls-height: ((40/(strip-unit($font-size-ui)*16)) * 1em) !default; // 40px 
 // Overlay
 $overlay-background-color: rgba($color-black, .18) !default;
 
+// =WIDTH
+// ---------------------------------------------------------------------------
+$width-small: 420px !default;
+$width-medium: 820px !default;
+$width-large: 1000px !default;
+
 
 // =SPACE
 // ---------------------------------------------------------------------------
