@@ -28,7 +28,7 @@ legend {
 	color: $form-legend-color-text;
 	padding: 0 1rem;
 	margin-left: -1rem;
-	top: 2px;
+	top: $space-2;
 	position: relative;
 	line-height: 0;
 }
@@ -70,7 +70,7 @@ select {
 select[multiple] {
     background-image: none;
     height: auto;
-    padding: .5em .75em;
+    padding: $space-8;
 }
 
 // States
@@ -172,7 +172,7 @@ label {
     font-weight: $form-label-font-weight;
     text-transform: $form-label-text-transform;
     color: $form-label-color-text;
-    margin-bottom: 0.25em;
+    margin-bottom: $space-4;
 
     &.is-checkbox,
     & .is-desc,
@@ -188,27 +188,6 @@ label {
     	color: inherit;
     }
 }
-
-
-// Required
-.is-req {
-    position: relative;
-    top: 1px;
-	font-size: $form-req-font-size;
-	font-weight: $form-req-font-weight;
-	color: $form-req-color-text;
-}
-
-// Description
-.is-desc {
-    font-size: $form-desc-font-size;
-    font-weight: $form-desc-font-weight;
-    text-transform: $form-desc-text-transform;
-    color: $form-desc-color-text;
-}
-span.is-desc { margin-left: 0.25em; }
-div.is-desc  { margin-top: 0.25em;  }
-
 
 // Form
 form {
@@ -232,10 +211,27 @@ form {
     }
     & span.is-success,
     & span.is-error {
-        margin-left: 0.25em;;
+        margin-left: $space-2;
+    }
+    & .is-desc {
+        font-size: $form-desc-font-size;
+        font-weight: $form-desc-font-weight;
+        text-transform: $form-desc-text-transform;
+        color: $form-desc-color-text;
+    }
+    & span.is-desc {
+        margin-left: $space-4;
     }
     & div.is-desc {
-        margin-bottom: -0.5em;
+        margin-top: $space-4;
+        margin-bottom: -$space-4;
+    }
+    & .is-req {
+        position: relative;
+        top: 1px;
+    	font-size: $form-req-font-size;
+    	font-weight: $form-req-font-weight;
+    	color: $form-req-color-text;
     }
 }
 
@@ -250,7 +246,7 @@ fieldset > .is-row:last-child {
 .form-checkboxes {
     & label.is-checkbox {
         display: inline-block;
-        margin-right: 1em;
+        margin-right: $space-16;
 	}
 }
 .form-item.is-inline,
@@ -276,10 +272,10 @@ fieldset > .is-row:last-child {
 
     & button,
     & .button {
-        margin-right: .65rem;
+        margin-right: $space-8;
     }
     & button + .button.is-tertiary {
-        margin-left: .65rem;
+        margin-left: $space-8;
     }
     & button.is-push-right,
     & .button.is-tertiary.is-push-right,

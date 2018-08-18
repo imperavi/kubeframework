@@ -39,7 +39,8 @@ button,
 	& span {
     	display: inline-block;
     	font-size: 16px;
-        margin: 0 .25em;
+        margin-left: $space-4;
+        margin-right: $space-4;
 	}
     &:hover {
         @include transition;
@@ -153,6 +154,12 @@ button,
                 opacity: .6;
             }
         }
+    }
+    // Small
+    &.is-small {
+        font-size: $button-small-font-size;
+        min-height: $button-small-height;
+        padding: $button-small-padding;
     }
     // Loading
     &:empty.is-loading:before {

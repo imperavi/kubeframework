@@ -8,7 +8,7 @@ table {
 	max-width: 100%;
 	width: 100%;
 	empty-cells: show;
-	margin-bottom: $space-large;
+	margin-bottom: $space-20;
 }
 table caption {
     text-align: left;
@@ -17,7 +17,7 @@ table caption {
     text-transform: $table-caption-text-transform;
     color: $table-caption-color-text;
     letter-spacing: $table-caption-letter-spacing;
-    margin-bottom: 2px;
+    margin-bottom: $space-2;
 }
 th {
 	font-weight: $table-head-font-weight;
@@ -36,6 +36,8 @@ td.is-middle {
 }
 th,
 td {
+    @include cropline;
+
 	padding: $table-padding-tb $table-padding-rl;
 	border-bottom: $table-border;
 	&:first-child {
@@ -45,19 +47,29 @@ td {
 		padding-right: 0;
 	}
 }
+tbody th,
+tbody td {
+    border-width: $table-th-border-width;
+    border-color: $table-th-border-color;
+}
 tfoot th,
 tfoot td {
 	color: rgba($color-text, .5);
 }
 
 // Bordered
+table.is-border,
 table.is-bordered {
 
 	& td,
 	& th {
 		border: $table-border;
 	}
-
+	& tbody th,
+	& tbody td {
+        border-bottom-width: $table-th-border-width;
+        border-bottom-color: $table-th-border-color;
+    }
 }
 
 // Striped
@@ -65,6 +77,7 @@ table.is-striped tr:nth-child(odd) td {
 	background-color: $table-background-striped;
 }
 
+table.is-border,
 table.is-bordered,
 table.is-striped {
 	& td,
@@ -75,15 +88,6 @@ table.is-striped {
 		&:last-child {
 			padding-right: $table-padding-rl;
 		}
-	}
-}
-
-// Unstyled
-table.is-unstyled {
-	& td,
-	& th {
-		border: none;
-		padding: 0;
 	}
 }
 
@@ -100,15 +104,17 @@ table.is-unstyled {
             background-color: $table-background-striped;
         }
         td {
-            padding: 1rem;
+            padding: $space-16;
             text-align: right;
         }
         td:before {
+            margin-top: $space-2;
             content: attr(data-label);
             float: left;
             font-size: $font-size-small;
             font-weight: bold;
             text-transform: uppercase;
+            white-space: nowrap;
         }
     }
 }
@@ -117,7 +123,7 @@ table.is-unstyled {
 .is-table-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    margin-bottom: $space-medium;
+    margin-bottom: $space-16;
 
     & table {
         margin-bottom: 0;

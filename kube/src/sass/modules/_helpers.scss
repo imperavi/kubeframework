@@ -20,17 +20,24 @@
 // Layout
 .is-push-right {
     margin-left: auto;
-
-    @include for-mobile {
-        margin-left: 0;
-    }
+    flex: none;
 }
+@include for-mobile {
+    .is-push-right { margin-left: 0; }
+    .is-push-right-mobile { margin-left: auto; }
+}
+
+// Align
 .is-center,
 .is-centered {
     margin-left: auto;
     margin-right: auto;
 }
-
+@include for-mobile {
+    .is-left-mobile {
+        margin-left: 0;
+    }
+}
 
 // Fixed
 .is-fixed {
@@ -127,14 +134,14 @@
 .is-shadow-3 { box-shadow: $shadow-3; }
 
 // Border
-.is-border { border: 1px solid rgba($color-black, .05); }
-.is-border-top { border-top: 1px solid rgba($color-black, .05); }
-.is-border-bottom { border-bottom: 1px solid rgba($color-black, .05); }
+.is-border { border: $border; }
+.is-border-top { border-top: $border; }
+.is-border-bottom { border-bottom: $border; }
 .is-border-radius { border-radius: $border-radius; }
 
 // Scroll
 .is-scrollable {
-    overflow-y: auto;
+    overflow-x: auto;
     white-space: nowrap;
 }
 
@@ -151,7 +158,7 @@
 	height: 0;
 	padding-bottom: 56.25%; // ratio 16:9
 	position: relative;
-	margin-bottom: $space-medium;
+	margin-bottom: $space-16;
 	& iframe,
 	& object,
 	& embed {
@@ -163,7 +170,7 @@
 	}
 }
 figure .is-video-container {
-    margin-bottom: $space-small;
+    margin-bottom: $space-8;
 }
 
 // Close

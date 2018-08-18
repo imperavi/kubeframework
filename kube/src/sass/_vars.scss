@@ -15,6 +15,58 @@ $sm: 768px !default;
 $md: 1024px !default;
 $lg: 1440px !default;
 
+// =WIDTH
+// ---------------------------------------------------------------------------
+$width-small: 420px !default;
+$width-medium: 820px !default;
+$width-large: 1000px !default;
+
+// =SPACE
+// ---------------------------------------------------------------------------
+$space-2: 2px !default;
+$space-4: 4px !default;
+$space-8: 8px !default;
+$space-12: 12px !default;
+$space-16: 16px !default;
+$space-20: 20px !default;
+$space-24: 24px !default;
+$space-28: 28px !default;
+$space-32: 32px !default;
+$space-36: 36px !default;
+$space-40: 40px !default;
+$space-44: 44px !default;
+$space-48: 48px !default;
+$space-52: 52px !default;
+$space-56: 56px !default;
+$space-60: 60px !default;
+$space-64: 64px !default;
+$space-80: 80px !default;
+$space-100: 100px !default;
+$space-120: 120px !default;
+
+// map
+$map-space: (
+  2: $space-2,
+  4: $space-4,
+  8: $space-8,
+  12: $space-12,
+  16: $space-16,
+  20: $space-20,
+  24: $space-24,
+  28: $space-28,
+  32: $space-32,
+  36: $space-36,
+  40: $space-40,
+  44: $space-44,
+  48: $space-48,
+  52: $space-52,
+  56: $space-56,
+  60: $space-60,
+  64: $space-64,
+  80: $space-80,
+  100: $space-100,
+  120: $space-120
+);
 
 // =ZINDEX
 // ---------------------------------------------------------------------------
@@ -26,8 +78,8 @@ $z-over-all: 400 !default; // messages
 
 // =GRID
 // ---------------------------------------------------------------------------
-$grid-gap: 20px !default;
-$grid-margin: 20px !default;
+$grid-gap: $space-24 !default;
+$grid-margin: $space-20 !default;
 
 
 // =FONTFAMILY
@@ -73,8 +125,8 @@ $color-label: #f53e53 !default;
 
 // Font Metrics
 $letter-height: 12/16;
-$crop-top:  0.5em;
-$crop-bottom: 0.5em;
+$crop-top:  0.49em;
+$crop-bottom: 0.49em;
 
 // Font Size
 $font-size-smaller: 0.75em !default; // 12px
@@ -93,54 +145,19 @@ $base-line-ems: $base-line * 1em !default;
 // Box Shadow
 $shadow-1: 0 1px 3px rgba($color-black, .15) !default;
 $shadow-2: 0 6px 24px rgba($color-black, .12) !default;
-$shadow-3: 0 15px 30px rgba($color-black, .2) !default;
+$shadow-3: 0 15px 40px rgba($color-black, .2) !default;
 
-// Border Radius
+// Border
 $border-radius: (3/16 * 1rem) !default; // 3px
+$border: 1px solid rgba($color-black, .05) !default;
 
 // Input/Buttons Height
 $controls-height: ((40/(strip-unit($font-size-ui)*16)) * 1em) !default; // 40px in ems
+$controls-height-small: ((32/(strip-unit($font-size-small)*16)) * 1em) !default; // 32px in ems
 
 // Overlay
 $overlay-background-color: rgba($color-black, .18) !default;
 
-// =WIDTH
-// ---------------------------------------------------------------------------
-$width-small: 420px !default;
-$width-medium: 820px !default;
-$width-large: 1000px !default;
-
-
-// =SPACE
-// ---------------------------------------------------------------------------
-$space-xxsmall: 2px !default;
-$space-xsmall: 4px !default;
-$space-small: 8px !default;
-$space-medium: 16px !default;
-$space-large: 20px !default;
-$space-xlarge: 24px !default;
-$space-xxlarge: 32px !default;
-$space-xxxlarge: 40px !default;
-$space-huge: 48px !default;
-$space-xhuge: 64px !default;
-$space-xxhuge: 80px !default;
-$space-xxxhuge: 100px !default;
-
-// map
-$map-space: (
-  xxsmall: $space-xxsmall,
-  xsmall: $space-xsmall,
-  small: $space-small,
-  medium: $space-medium,
-  large: $space-large,
-  xlarge: $space-xlarge,
-  xxlarge: $space-xxlarge,
-  xxxlarge: $space-xxxlarge,
-  huge: $space-huge,
-  xhuge: $space-xhuge,
-  xxhuge: $space-xxhuge,
-  xxxhuge: $space-xxxhuge
-);
 
 // =HEADINGS
 // ---------------------------------------------------------------------------
@@ -213,7 +230,7 @@ $alert-font-weight: normal !default;
 $alert-text-transform: none !default;
 $alert-background: rgba($color-black, .05) !default;
 $alert-color-text: rgba($color-black, .9) !default;
-$alert-padding: 12px 32px 12px 16px !default;
+$alert-padding: $space-16 $space-32 $space-16 $space-16 !default;
 $alert-box-shadow: none !default;
 $alert-border-width: 0 !default;
 $alert-border-style: solid !default;
@@ -252,7 +269,7 @@ $alert-inverted-link-color-hover: rgba($color-inverted, .6) !default;
 // ---------------------------------------------------------------------------
 
 // item
-$form-item-margin: 20px !default;
+$form-item-margin: $space-16 !default;
 $form-item-inline-offset: 150px !default;
 
 // legend
@@ -262,7 +279,7 @@ $form-legend-text-transform: uppercase !default;
 $form-legend-color-text: rgba($color-black, .5) !default;
 
 // fieldset
-$form-fieldset-padding: 2rem !default;
+$form-fieldset-padding: $space-32 !default;
 $form-fieldset-border-width: 1px !default;
 $form-fieldset-border-style: solid !default;
 $form-fieldset-border-color: rgba($color-black, .1) !default;
@@ -294,13 +311,13 @@ $input-placeholder-text-color: rgba($color-black, .4) !default;
 
 // textarea
 $input-textarea-base-line: $base-line !default;
-$input-textarea-padding: .5em !default;
+$input-textarea-padding: $space-8 !default;
 
 // default
 $input-default-font-size: $font-size-ui !default;
 $input-default-font-weight: normal !default;
 $input-default-height: $controls-height !default;
-$input-default-padding: 0 .5em !default;
+$input-default-padding: 0 $space-8 !default;
 $input-default-background: #fff !default;
 $input-default-color-text: rgba($color-black, .8) !default;
 $input-default-border-width: 1px !default;
@@ -357,7 +374,7 @@ $input-disabled-color-text: rgba($color-black, .6) !default;
 $input-append-font-size: $font-size-small !default;
 $input-append-font-weight: normal !default;
 $input-append-text-transform: none !default;
-$input-append-padding: 0 .875rem !default;
+$input-append-padding: 0 $space-16 !default;
 $input-append-background: rgba($color-black, .03) !default;
 $input-append-color-text: rgba($color-black, .5) !default;
 $input-append-border-width: 1px !default;
@@ -374,7 +391,7 @@ $button-default-font-weight: 500 !default;
 $button-default-text-transform: none !default;
 $button-default-text-decoration: none !default;
 $button-default-height: $controls-height !default;
-$button-default-padding: .5em 1.35em !default;
+$button-default-padding: .5em 1.6em !default;
 $button-default-background: $color-button !default;
 $button-default-color-text: rgba(#fff, .95) !default;
 $button-default-border-width: 0 !default;
@@ -389,7 +406,7 @@ $button-secondary-font-weight: 500 !default;
 $button-secondary-text-transform: none !default;
 $button-secondary-text-decoration: none !default;
 $button-secondary-height: $controls-height !default;
-$button-secondary-padding: .5em 1.35em !default;
+$button-secondary-padding: .5em 1.6em !default;
 $button-secondary-background: none !default;
 $button-secondary-color-text: $color-button !default;
 $button-secondary-border-width: 2px !default;
@@ -413,6 +430,10 @@ $button-tertiary-border-color: transparent !default;
 $button-tertiary-border-radius: $border-radius !default;
 $button-tertiary-box-shadow: none !default;
 
+// small
+$button-small-font-size: $font-size-small !default;
+$button-small-height: $controls-height-small !default;
+$button-small-padding: .45em 1.15em !default;
 
 // =BREADCRUMB
 // ---------------------------------------------------------------------------
@@ -434,7 +455,7 @@ $breadcrumb-separator-color-text: rgba($color-black, .4) !default;
 $dropdown-width: 280px !default;
 $dropdown-font-size: $font-size-ui !default;
 $dropdown-font-weight: normal !default;
-$dropdown-padding: 0 0 .25rem 0 !default;
+$dropdown-padding: 0 0 $space-2 0 !default;
 $dropdown-background: #fff !default;
 $dropdown-box-shadow: $shadow-2 !default;
 $dropdown-border-width: 0 !default;
@@ -468,7 +489,7 @@ $label-letter-spacing: 0 !default;
 $label-line-height: 20px !default;
 $label-background: $color-label !default;
 $label-color-text: rgba(#fff, .95) !default;
-$label-padding: 0 .5em !default;
+$label-padding: 0 $space-8 !default;
 $label-border-width: 1px !default;
 $label-border-style: solid !default;
 $label-border-color: transparent !default;
@@ -512,7 +533,7 @@ $message-font-family: $font-family-text !default;
 $message-font-size: $font-size-ui !default;
 $message-font-weight: normal !default;
 $message-text-transform: none !default;
-$message-padding: .75rem 2rem .75rem 1rem !default;
+$message-padding: $space-16 !default;
 $message-width: 360px !default;
 $message-background: #fff !default;
 $message-box-shadow: $shadow-2 !default;
@@ -559,7 +580,7 @@ $modal-color-text: $color-text !default;
 
 // header
 $modal-header-background: none !default;
-$modal-header-padding: 20px 24px !default;
+$modal-header-padding: $space-20 $space-24 !default;
 $modal-header-font-size: 1.05rem !default;
 $modal-header-font-weight: bold !default;
 $modal-header-border-bottom: 1px solid rgba($color-black, .05) !default;
@@ -567,13 +588,13 @@ $modal-header-border-bottom: 1px solid rgba($color-black, .05) !default;
 // body
 $modal-body-font-size: inherit !default;
 $modal-body-background: none !default;
-$modal-body-padding: 28px 24px !default;
+$modal-body-padding: $space-24 !default;
 
 // footer
 $modal-footer-font-size: inherit !default;
 $modal-footer-font-weight: normal !default;
 $modal-footer-background: none !default;
-$modal-footer-padding: 16px 24px !default;
+$modal-footer-padding: $space-16 $space-24 !default;
 $modal-footer-border-top: 1px solid rgba($color-black, .05) !default;
 
 
@@ -581,7 +602,7 @@ $modal-footer-border-top: 1px solid rgba($color-black, .05) !default;
 // ---------------------------------------------------------------------------
 
 // navbar
-$navbar-item-space: 28px;
+$navbar-item-space: $space-24;
 
 
 // =OFFCANVAS
@@ -597,7 +618,7 @@ $pager-font-size: $font-size-small !default;
 $pager-font-weight:  normal !default;
 $pager-text-transform: none !default;
 $pager-color-text: $color-text-secondary !default;
-$pager-padding: .85em 1.1em .75em 1.1em !default;
+$pager-padding: $space-8 $space-16 !default;
 $pager-border-width: 1px !default;
 $pager-border-style: solid !default;
 $pager-border-color: rgba($color-black, .1) !default;
@@ -628,10 +649,12 @@ $progress-background-color: $color-focus !default;
 
 $table-font-size: $font-size-ui !default;
 $table-color-text: inherit !default;
-$table-padding-tb: .8em !default;
-$table-padding-rl: .8em !default;
+$table-padding-tb: $space-16 !default;
+$table-padding-rl: $space-16 !default;
 $table-border: 1px solid #eee !default;
 $table-background-striped: #fafafa !default;
+$table-th-border-width: 1px !default;
+$table-th-border-color: #eee !default;
 
 // head
 $table-head-font-weight: 700 !default;
@@ -652,7 +675,7 @@ $tabs-font-size: $font-size-ui !default;
 $tabs-font-weight: normal !default;
 $tabs-text-transform: none !default;
 $tabs-text-decoration: none !default;
-$tabs-padding: .5rem 1rem !default;
+$tabs-padding: $space-8 $space-16 !default;
 $tabs-background: rgba($color-black, .05) !default;
 $tabs-color-text: rgba($color-black, .65) !default;
 $tabs-border-width: 1px !default;

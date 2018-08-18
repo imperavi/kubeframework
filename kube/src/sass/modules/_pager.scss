@@ -7,8 +7,8 @@
     font-size: $pager-font-size;
     font-weight: $pager-font-weight;
     text-transform: $pager-text-transform;
-    margin-top: $space-large;
-    margin-bottom: $space-large;
+    margin-top: $space-20;
+    margin-bottom: $space-20;
 
     & a,
     & span {
@@ -38,11 +38,11 @@
     }
     & a.is-prev:before {
         content: '<';
-        margin-right: .4em;
+        margin-right: $space-8;
     }
     & a.is-next:after {
         content: '>';
-        margin-left: .4em;
+        margin-left: $space-8;
     }
     & a.is-prev:empty:before {
         margin-right: 0;
@@ -73,7 +73,7 @@
             font-size: 1.1rem;
             font-weight: bold;
             padding: 0;
-            padding-top: 20px;
+            padding-top: $space-20;
         }
         & a:hover {
             background: none;
@@ -96,7 +96,7 @@
             font-style: normal;
             font-weight: normal;
             letter-spacing: .03em;
-            margin-bottom: .25em;
+            margin-bottom: $space-4;
             color: rgba($color-black, .5);
         }
         & .is-next {
@@ -116,7 +116,7 @@
             float: none;
             display: block;
             width: 100%;
-            margin-bottom: 24px;
+            margin-bottom: $space-20;
             &:last-child {
                 margin-bottom: 0;
             }

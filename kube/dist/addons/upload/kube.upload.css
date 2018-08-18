@@ -21,7 +21,7 @@
 .upload-target {
   background-color: rgba(44, 118, 238, 0.02);
   border: 1px solid rgba(44, 118, 238, 0.1);
-  padding: 6px 8px; }
+  padding: 4px 8px; }
   .upload-target:empty {
     padding: 0;
     border: none; }
@@ -29,9 +29,10 @@
     display: flex;
     font-size: 0.875em;
     border-bottom: 1px solid rgba(17, 17, 19, 0.05);
-    padding: 4px 0; }
+    padding-top: 4px;
+    padding-bottom: 4px; }
     .upload-target .upload-item .close {
-      margin-top: 3px;
+      margin-top: 2px;
       margin-right: 4px; }
     .upload-target .upload-item em {
       font-style: normal;
@@ -42,8 +43,8 @@
       border-bottom-color: transparent; }
 
 .upload-box {
-  margin-right: -12px;
-  margin-bottom: -12px; }
+  margin-right: -16px;
+  margin-bottom: -16px; }
   .upload-box:after {
     content: '';
     display: table;
@@ -59,8 +60,8 @@
     position: relative;
     font-size: 0;
     line-height: 0;
-    margin-right: 12px;
-    margin-bottom: 12px; }
+    margin-right: 16px;
+    margin-bottom: 16px; }
     .upload-box .upload-item.is-uploaded {
       border-style: solid;
       border-color: rgba(44, 118, 238, 0.35); }
@@ -74,8 +75,8 @@
     .upload-box .upload-item .close {
       position: absolute;
       z-index: 3;
-      top: -3px;
-      right: -7px;
+      top: -4px;
+      right: -8px;
       background-color: #f53e53;
       color: #fff;
       opacity: 1; }

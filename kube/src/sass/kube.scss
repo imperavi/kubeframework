@@ -1,7 +1,7 @@
 /*
 	Kube UI Framework
-	Version 7.0.1
-	Updated: July 27, 2018
+	Version 7.1
+	Updated: August 18, 2018
 
 	http://imperavi.com/kube/
 

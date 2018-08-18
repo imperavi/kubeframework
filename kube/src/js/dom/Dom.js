@@ -1035,6 +1035,8 @@ Dom.prototype = {
     },
     _getHeightOrWidth: function(type, el, adjust)
     {
+        if (!el) return 0;
+
         var name = type.charAt(0).toUpperCase() + type.slice(1);
         var style = getComputedStyle(el, null);
         var $el = new Dom(el);

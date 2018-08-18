@@ -27,7 +27,7 @@ $autocomplete-border-color: transparent !default;
     & a {
         font-size: $font-size-ui;
         display: block;
-        padding: 8px 12px;
+        padding: $space-8;
         text-decoration: none;
         color: $color-text;
         border-bottom: 1px solid rgba($color-black, .05);
@@ -43,7 +43,7 @@ $autocomplete-border-color: transparent !default;
 }
 .autocomplete-labels {
     & .label {
-        margin-right: 4px;
-        margin-bottom: 4px;
+        margin-right: $space-4;
+        margin-bottom: $space-4;
     }
 }

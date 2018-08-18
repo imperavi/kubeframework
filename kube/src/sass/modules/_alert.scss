@@ -14,7 +14,7 @@
     border-radius: $alert-border-radius;
 
     position: relative;
-    margin-bottom: $space-medium;
+    margin-bottom: $space-16;
 
     & h1,
     & h2,
@@ -22,7 +22,7 @@
     & h4,
     & h5,
     & h6 {
-        margin-bottom: .25em;
+        margin-bottom: $space-2;
     }
     & a {
         color: inherit;
@@ -33,8 +33,8 @@
     }
     & .close {
         position: absolute;
-        right: 8px;
-        top: 18px;
+        right: $space-8;
+        top: $space-16;
     }
     & p {
         margin-top: 0;

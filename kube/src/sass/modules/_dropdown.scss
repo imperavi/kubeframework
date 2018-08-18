@@ -18,7 +18,7 @@
     & a {
         display: block;
         text-decoration: none;
-        padding: .5rem 1rem;
+        padding: $space-8 $space-16;
         white-space: nowrap;
     }
     & a {
@@ -30,8 +30,7 @@
         background: $dropdown-item-hover-background;
     }
     & a.is-separator {
-        padding-bottom: .7rem;
-        margin-bottom: .2rem;
+        padding-bottom: $space-8;
         border-bottom: $dropdown-separator-border-bottom;
     }
     & a:first-child,

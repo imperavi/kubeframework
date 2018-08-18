@@ -3,8 +3,8 @@
 
 .message {
     position: fixed;
-    top: 10px;
-    right: 10px;
+    top: $space-8;
+    right: $space-8;
     width: $message-width;
     background: $message-background;
     box-shadow: $message-box-shadow;
@@ -37,7 +37,7 @@
         margin-left: -180px;
     }
     &.is-left {
-        left: 10px;
+        left: $space-8;
         right: auto;
     }
     &.is-line {

@@ -71,5 +71,6 @@ a.label {
     height: 16px;
     border-radius: 64px;
     min-width: 16px;
-    padding: 0 2px;
+    padding-left: $space-2;
+    padding-right: $space-2;
 }

@@ -1,177 +1,97 @@
 // NAVBAR
 // ---------------------------------------------------------------------------
 
-// Navbar Box
+.is-navbar-container,
 .is-navbar-box {
     @include make-container;
     @include flex-items-middle;
 
     min-width: 100%;
+    min-height: 100%;
 
     & .is-brand {
-        margin-right: $navbar-item-space;
-    }
+        @include flex;
+        @include flex-items-middle;
 
-    // Inverted
-    &.is-inverted {
-        color: rgba(#fff, .95);
-
-        & nav {
-            & a {
-                color: rgba(#fff, .9);
-            }
-            & a:hover {
-                color: rgba(#fff, .6);
-            }
-            & li.is-active a {
-                color: rgba(#fff, .45);
-            }
+        & h1,
+        & h2,
+        & h3,
+        & h4,
+        & h5,
+        & h6 {
+            line-height: 1;
+            margin: 0;
         }
     }
 }
-
-// Navbar
 .is-navbar {
     @include make-container;
     @include flex-items-middle;
 
-    & h1,
-    & h2,
-    & h3,
-    & h4,
-    & h5,
-    & h6 {
-        line-height: $base-line * 16px;
+    & ul {
+        @include make-container;
+        @include flex-items-middle;
     }
-
-    & h1,
-    & h2,
-    & h3,
-    & h4,
-    & h5,
-    & h6,
-    & nav,
+    & li {
+        white-space: nowrap;
+        margin-left: $navbar-item-space;
+    }
+    & a:not(.button) {
+        @include cropline(1);
+        line-height: 1;
+        display: block;
+        padding-top: $space-8;
+        padding-bottom: $space-8;
+    }
     & form {
-        margin-top: 0;
-        margin-bottom: 0;
+        margin: 0;
     }
-
-    & nav {
-
-        & ul {
-            @include make-container;
-            @include flex-items-middle;
-        }
-        & li {
-            white-space: nowrap;
-        }
-        & a {
-            display: block;
-            color: $color-text-secondary;
-            text-decoration: none;
-        }
-        & a:hover {
-            @include transition;
-            color: $color-link-hover;
-            text-decoration: underline;
-        }
-        & li.is-active a {
-            cursor: text;
-            color: rgba($color-black, .35);
-            text-decoration: none;
-        }
-        & li + li {
-            margin-left: $navbar-item-space;
-        }
+    & input {
+        position: relative;
+        top: 1px;
     }
-
-    // Centered
-    & nav.is-center,
-    & nav.is-centered {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    // Justify
     & nav.is-justify {
         text-align: center;
         width: 100%;
 
         & li {
             flex: 1;
-        }
-    }
-
-    // Links
-    & nav.is-links {
-        & a {
-            color: $color-link;
-            text-decoration: underline;
-        }
-        & a:hover {
-            @include transition;
-            color: $color-link-hover;
-            text-decoration: underline;
-        }
-        & li.is-active a {
-            cursor: text;
-            color: rgba($color-black, .35);
-            text-decoration: none;
-        }
-    }
-
-    // Parent
-    & nav {
-        & li.is-parent a {
-            text-decoration: underline;
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 }
 
 @include for-mobile {
-    .is-navbar-box,
-    .is-navbar,
-    .is-navbar nav ul {
-        align-items: flex-start;
-        display: block;
-        width: 100%;
-    }
-    .is-navbar-box {
-        & .is-brand {
-            padding-top: .4em;
-            padding-bottom: .4em;
-            margin-right: 0;
+    .is-navbar-container.is-scrollable,
+    .is-navbar-box.is-scrollable {
+        &,
+        & .is-navbar,
+        & .is-navbar ul {
+            display: flex;
+            flex-direction: row;
         }
     }
-    .is-navbar {
-        & nav {
-            & li + li {
-                margin-left: 0;
-                margin-right: 0;
-            }
+    .is-navbar-container:not(.is-scrollable),
+    .is-navbar-box:not(.is-scrollable) {
+        &,
+        & .is-navbar,
+        & .is-navbar ul {
+            align-items: flex-start;
+            display: block;
+            max-width: 100%;
+        }
+        & .is-navbar {
             & li {
-                white-space: normal;
-            }
-            & a {
-                display: block;
-
                 margin-left: 0;
-                margin-right: 0;
             }
-        }
-        & nav,
-        & form {
-            & button,
-            & .button {
-                text-align: center;
+            & input,
+            & .button.is-small {
+                margin-top: $space-8;
+                margin-bottom: $space-8;
             }
-            & button,
-            & .button,
-            & input {
-                width: 100%;
-                margin-left: 0;
-                margin-right: 0;
-                display: block;
+            & nav.is-justify {
+                text-align: left;
             }
         }
     }

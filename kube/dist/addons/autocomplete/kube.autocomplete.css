@@ -11,7 +11,7 @@
   .autocomplete a {
     font-size: 0.9375em;
     display: block;
-    padding: 8px 12px;
+    padding: 8px;
     text-decoration: none;
     color: #111113;
     border-bottom: 1px solid rgba(17, 17, 19, 0.05); }

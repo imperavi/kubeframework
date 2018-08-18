@@ -13,7 +13,7 @@
     & a,
     & span {
     	font-style: normal;
-    	padding-right: 8px;
+    	padding-right: $space-8;
     	white-space: nowrap;
         color: $breadcrumb-color-text;
     }
@@ -27,7 +27,7 @@
     	display: inline-block;
     	content: $breadcrumb-separator-content;
     	color: $breadcrumb-separator-color-text;
-    	padding-left: 8px;
+    	padding-left: $space-8;
     }
     & span:last-child:after,
     & a:last-child:after {

@@ -1,7 +1,7 @@
 /*
 	Kube UI Framework
-	Version 7.0.1
-	Updated: July 27, 2018
+	Version 7.1
+	Updated: August 18, 2018
 
 	http://imperavi.com/kube/
 
@@ -1159,6 +1159,8 @@ Dom.prototype = {
     },
     _getHeightOrWidth: function(type, el, adjust)
     {
+        if (!el) return 0;
+
         var name = type.charAt(0).toUpperCase() + type.slice(1);
         var style = getComputedStyle(el, null);
         var $el = new Dom(el);
@@ -1339,7 +1341,7 @@ $K.init = function(options)
 };
 
 // Globals
-$K.version = '7.0.1';
+$K.version = '7.1';
 $K.options = {};
 $K.modules = {};
 $K.services = {};
@@ -2392,7 +2394,7 @@ $K.add('service', 'message', {
             delay: 7, // seconds
             message: '',
             position: 'right', // left, centered, line
-            positions: ['is-left', 'is-right', 'is-centered', 'is-line'],
+            positions: ['is-left', 'is-right', 'is-center', 'is-centered', 'is-line'],
             type: false,
             types: ['is-error', 'is-success', 'is-focus', 'is-black'],
             selector: 'kube-message'

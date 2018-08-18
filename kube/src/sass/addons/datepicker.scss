@@ -10,24 +10,24 @@ $datepicker-border-width: 0 !default;
 $datepicker-border-style: solid !default;
 $datepicker-border-color: transparent !default;
 $datepicker-box-shadow: $shadow-2 !default;
-$datepicker-padding: 10px 16px !default;
+$datepicker-padding: $space-20 !default;
 
 // controls
 $datepicker-controls-text-color: rgba($color-black, .75) !default;
 
 // month
-$datepicker-month-font-size: 13px !default;
-$datepicker-month-text-color: rgba($color-black, .85) !default;
+$datepicker-month-font-size: 12px !default;
+$datepicker-month-text-color: $color-black !default;
 
 // weekdays
-$datepicker-weekdays-font-size: 10px !default;
-$datepicker-weekdays-text-color: rgba($color-black, .4) !default;
+$datepicker-weekdays-font-size: 11px !default;
+$datepicker-weekdays-text-color: $color-black !default;
 
 // cell
 $datepicker-cell-font-size: 12px !default;
 $datepicker-cell-border-color: #fff !default;
-$datepicker-cell-background-color: rgba($color-black, .03) !default;
-$datepicker-cell-text-color: rgba($color-black, .85) !default;
+$datepicker-cell-background-color: #fff !default;
+$datepicker-cell-text-color: $color-black !default;
 $datepicker-cell-hover-background-color: $color-focus !default;
 $datepicker-cell-hover-text-color: #fff !default;
 
@@ -57,18 +57,23 @@ $datepicker-disabled-text-color: rgba($color-black, .3) !default;
 	box-shadow: $datepicker-box-shadow;
 	&.is-embed {
         border: 1px solid rgba($color-black, .05);
-    	max-width: 308px;
+    	max-width: 288px;
 		position: static;
 		box-shadow: none;
 	}
 }
 .datepicker-head {
     display: flex;
+    align-items: center;
+    margin-top: -4px;
+    margin-bottom: 8px;
 }
 .datepicker-control {
 	width: 24px;
 	height: 24px;
 	color: $datepicker-controls-text-color;
+	font-size: 18px;
+	font-weight: bold;
 	text-align: center;
 	cursor: pointer;
 	-webkit-user-select: none;
@@ -80,9 +85,11 @@ $datepicker-disabled-text-color: rgba($color-black, .3) !default;
 .datepicker-month-box {
     flex: 1;
 	font-size: $datepicker-month-font-size;
+	font-weight: bold;
+	text-transform: uppercase;
 	color: $datepicker-month-text-color;
 	text-align: center;
-    padding: 2px 0;
+    padding: 8px 0 4px 0;
 	& span {
     	margin: 0 1px;
 	}
@@ -123,11 +130,12 @@ $datepicker-disabled-text-color: rgba($color-black, .3) !default;
 	& span {
 		display: inline-block;
 		text-align: center;
-		width: 40px;
+		width: 36px;
 		height: 24px;
         margin-top: -1px;
     	margin-left: -1px;
 		font-size: $datepicker-weekdays-font-size;
+		font-weight: bold;
 		color: $datepicker-weekdays-text-color;
 	}
 }
@@ -137,9 +145,9 @@ $datepicker-disabled-text-color: rgba($color-black, .3) !default;
 .datepicker-cell {
 	float: left;
 	text-align: center;
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
+	width: 36px;
+	height: 32px;
+	line-height: 32px;
 	margin-top: -1px;
 	margin-left: -1px;
 
@@ -149,7 +157,7 @@ $datepicker-disabled-text-color: rgba($color-black, .3) !default;
 	& a {
 		display: block;
 		color: $datepicker-cell-text-color;
-		line-height: 39px;
+		line-height: 31px;
 		text-decoration: none;
 		background: $datepicker-cell-background-color;
     }

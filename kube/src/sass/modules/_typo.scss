@@ -33,7 +33,7 @@ h6 {
     line-height: $headings-base-line;
 
     & + * {
-        margin-top: $space-small;
+        margin-top: $space-8;
     }
     & + h1,
     & + h2,
@@ -41,7 +41,7 @@ h6 {
     & + h4,
     & + h5,
     & + h6 {
-        margin-top: $space-small;
+        margin-top: $space-8;
     }
 
 }
@@ -66,7 +66,7 @@ ul,
 dl,
 figure,
 address {
-    margin-bottom: $space-medium;
+    margin-bottom: $space-16;
 }
 p,
 blockquote,
@@ -84,14 +84,14 @@ form {
     & + h4,
     & + h5,
     & + h6 {
-        margin-top: $space-large;
+        margin-top: $space-20;
     }
 }
 
 // Lists
 ul,
 ol {
-    margin-left: $space-large;
+    margin-left: $space-20;
 }
 ul ul,
 ul ol,
@@ -110,7 +110,7 @@ nav ul ul,
 nav ul ol,
 nav ol ol,
 nav ol ul {
-    margin-left: $space-large;
+    margin-left: $space-20;
 }
 li li {
     font-size: 1em;
@@ -132,7 +132,7 @@ dt {
 }
 dl {
     & dd + dt {
-        margin-top: $space-small;
+        margin-top: $space-8;
     }
 }
 
@@ -258,7 +258,7 @@ pre code {
     display: block;
     line-height: $pre-line-height;
     color: $pre-color-text;
-    overflow: none;
+    overflow: auto;
     white-space: pre-wrap;
 }
 pre {
@@ -309,6 +309,16 @@ a.is-muted:hover {
     @include transition;
     color: $color-black;
 }
+.is-color-black {
+    &,
+    & a {
+        color: $color-black;
+    }
+}
+a.is-color-black:hover,
+.is-color-black a:hover {
+    color: $color-link-hover;
+}
 .is-large {
     font-size: $font-size-large;
     line-height: $base-line-large;
@@ -322,6 +332,17 @@ a.is-muted:hover {
 }
 .is-smaller {
     font-size: $font-size-smaller;
+}
+.is-text-center {
+    text-align: center;
+}
+.is-text-right {
+    text-align: right;
+}
+@include for-mobile {
+    .is-text-left-mobile { text-align: left; }
+    .is-text-right-mobile { text-align: right; }
+    .is-text-center-mobile { text-align: center; }
 }
 .is-nowrap,
 .is-nowrap td {

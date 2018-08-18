@@ -11,7 +11,7 @@
   .autocomplete a {
     font-size: 0.9375em;
     display: block;
-    padding: 8px 12px;
+    padding: 8px;
     text-decoration: none;
     color: #111113;
     border-bottom: 1px solid rgba(17, 17, 19, 0.05); }
@@ -54,23 +54,28 @@
 .datepicker {
   position: absolute;
   background-color: #fff;
-  padding: 10px 16px;
+  padding: 20px;
   border: 0 solid transparent;
   border-radius: 0.1875rem;
   box-shadow: 0 6px 24px rgba(17, 17, 19, 0.12); }
   .datepicker.is-embed {
     border: 1px solid rgba(17, 17, 19, 0.05);
-    max-width: 308px;
+    max-width: 288px;
     position: static;
     box-shadow: none; }
 
 .datepicker-head {
-  display: flex; }
+  display: flex;
+  align-items: center;
+  margin-top: -4px;
+  margin-bottom: 8px; }
 
 .datepicker-control {
   width: 24px;
   height: 24px;
   color: rgba(17, 17, 19, 0.75);
+  font-size: 18px;
+  font-weight: bold;
   text-align: center;
   cursor: pointer;
   -webkit-user-select: none;
@@ -81,10 +86,12 @@
 
 .datepicker-month-box {
   flex: 1;
-  font-size: 13px;
-  color: rgba(17, 17, 19, 0.85);
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #111113;
   text-align: center;
-  padding: 2px 0; }
+  padding: 8px 0 4px 0; }
   .datepicker-month-box span {
     margin: 0 1px; }
 
@@ -122,12 +129,13 @@
   .datepicker-weekdays span {
     display: inline-block;
     text-align: center;
-    width: 40px;
+    width: 36px;
     height: 24px;
     margin-top: -1px;
     margin-left: -1px;
-    font-size: 10px;
-    color: rgba(17, 17, 19, 0.4); }
+    font-size: 11px;
+    font-weight: bold;
+    color: #111113; }
 
 .datepicker-row:after {
   content: '';
@@ -137,19 +145,19 @@
 .datepicker-cell {
   float: left;
   text-align: center;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  width: 36px;
+  height: 32px;
+  line-height: 32px;
   margin-top: -1px;
   margin-left: -1px;
   font-size: 12px;
   border: 1px solid #fff; }
   .datepicker-cell a {
     display: block;
-    color: rgba(17, 17, 19, 0.85);
-    line-height: 39px;
+    color: #111113;
+    line-height: 31px;
     text-decoration: none;
-    background: rgba(17, 17, 19, 0.03); }
+    background: #fff; }
   .datepicker-cell a:hover {
     background: #2c76ee;
     color: #fff; }
@@ -318,7 +326,7 @@
 .upload-target {
   background-color: rgba(44, 118, 238, 0.02);
   border: 1px solid rgba(44, 118, 238, 0.1);
-  padding: 6px 8px; }
+  padding: 4px 8px; }
   .upload-target:empty {
     padding: 0;
     border: none; }
@@ -326,9 +334,10 @@
     display: flex;
     font-size: 0.875em;
     border-bottom: 1px solid rgba(17, 17, 19, 0.05);
-    padding: 4px 0; }
+    padding-top: 4px;
+    padding-bottom: 4px; }
     .upload-target .upload-item .close {
-      margin-top: 3px;
+      margin-top: 2px;
       margin-right: 4px; }
     .upload-target .upload-item em {
       font-style: normal;
@@ -339,8 +348,8 @@
       border-bottom-color: transparent; }
 
 .upload-box {
-  margin-right: -12px;
-  margin-bottom: -12px; }
+  margin-right: -16px;
+  margin-bottom: -16px; }
   .upload-box:after {
     content: '';
     display: table;
@@ -356,8 +365,8 @@
     position: relative;
     font-size: 0;
     line-height: 0;
-    margin-right: 12px;
-    margin-bottom: 12px; }
+    margin-right: 16px;
+    margin-bottom: 16px; }
     .upload-box .upload-item.is-uploaded {
       border-style: solid;
       border-color: rgba(44, 118, 238, 0.35); }
@@ -371,8 +380,8 @@
     .upload-box .upload-item .close {
       position: absolute;
       z-index: 3;
-      top: -3px;
-      right: -7px;
+      top: -4px;
+      right: -8px;
       background-color: #f53e53;
       color: #fff;
       opacity: 1; }
