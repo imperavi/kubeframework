@@ -60,7 +60,7 @@
 .modal-footer {
 	font-size: $modal-footer-font-size;
 	font-weight: $modal-footer-font-weight;
-    background: $modal-footer-background;
+    background-color: $modal-footer-background;
 	padding: $modal-footer-padding;
 	border-top: $modal-footer-border-top;
     &:empty {

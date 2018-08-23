@@ -79,7 +79,6 @@ $z-over-all: 400 !default; // messages
 // =GRID
 // ---------------------------------------------------------------------------
 $grid-gap: $space-24 !default;
-$grid-margin: $space-20 !default;
 
 
 // =FONTFAMILY
@@ -154,6 +153,7 @@ $border: 1px solid rgba($color-black, .05) !default;
 // Input/Buttons Height
 $controls-height: ((40/(strip-unit($font-size-ui)*16)) * 1em) !default; // 40px in ems
 $controls-height-small: ((32/(strip-unit($font-size-small)*16)) * 1em) !default; // 32px in ems
+$controls-height-big: ((44/(strip-unit($font-size-big)*16)) * 1em) !default; // 44px in ems
 
 // Overlay
 $overlay-background-color: rgba($color-black, .18) !default;
@@ -207,14 +207,14 @@ $blockquote-border: none !default;
 $blockquote-border-left: 3px solid rgba($color-focus, .3) !default;
 
 // pre
-$pre-font-size: .9em !default;
+$pre-font-size: $font-size-small !default;
 $pre-line-height: $base-line !default;
-$pre-color-text: rgba($color-text, .85) !default;
-$pre-background: rgba($color-black, .02) !default;
+$pre-color-text: $color-black !default;
+$pre-background: transparent !default;
 $pre-padding: 1rem !default;
 $pre-border-width: 1px !default;
 $pre-border-style: solid !default;
-$pre-border-color: transparent !default;
+$pre-border-color: rgba($color-black, .08) !default;
 $pre-border-radius: $border-radius !default;
 
 // list
@@ -435,6 +435,11 @@ $button-small-font-size: $font-size-small !default;
 $button-small-height: $controls-height-small !default;
 $button-small-padding: .45em 1.15em !default;
 
+// big
+$button-big-font-size: $font-size-big !default;
+$button-big-height: $controls-height-big !default;
+$button-big-padding: .45em 1.45em !default;
+
 // =BREADCRUMB
 // ---------------------------------------------------------------------------
 
@@ -602,7 +607,7 @@ $modal-footer-border-top: 1px solid rgba($color-black, .05) !default;
 // ---------------------------------------------------------------------------
 
 // navbar
-$navbar-item-space: $space-24;
+$navbar-item-space: $space-28;
 
 
 // =OFFCANVAS

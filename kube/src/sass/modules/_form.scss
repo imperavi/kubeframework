@@ -186,6 +186,10 @@ label {
         line-height: $base-line;
     	cursor: pointer;
     	color: inherit;
+
+    	&.is-small { font-size: $font-size-small; }
+    	&.is-big { font-size: $font-size-big; }
+    	&.is-large { font-size: $font-size-large; }
     }
 }
 
@@ -193,11 +197,6 @@ label {
 form {
     margin-bottom: $form-item-margin;
 
-    & .is-row,
-    & .is-col {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
     & span,
     & div {
         &.is-success {
@@ -235,12 +234,10 @@ form {
     }
 }
 
-.form-item,
-.form-item.is-col {
+.form-item {
     margin-bottom: $form-item-margin;
 }
-fieldset > .form-item:last-child,
-fieldset > .is-row:last-child {
+fieldset > .form-item:last-child {
     margin-bottom: 0;
 }
 .form-checkboxes {
@@ -282,15 +279,6 @@ fieldset > .is-row:last-child {
     & .button.is-push-right {
         margin-left: auto;
         margin-right: 0;
-    }
-}
-
-
-@include for-mobile() {
-    form .is-row {
-       & .form-item {
-           margin-bottom: $form-item-margin;
-       }
     }
 }
 

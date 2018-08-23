@@ -121,8 +121,26 @@
     display: flex;
     flex: 1;
 
-    @include for-mobile() {
+    @include for-mobile {
         flex-direction: column;
+    }
+}
+@mixin make-container-row {
+    display: flex;
+    flex: 1;
+}
+@mixin make-container-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+// middle
+@mixin make-items-middle {
+    @include flex-items-middle;
+    @include for-mobile {
+        @include flex-items-left;
+        align-items: flex-start;
     }
 }
 

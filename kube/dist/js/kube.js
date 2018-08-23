@@ -1,7 +1,7 @@
 /*
 	Kube UI Framework
-	Version 7.1
-	Updated: August 18, 2018
+	Version 7.1.1
+	Updated: August 23, 2018
 
 	http://imperavi.com/kube/
 
@@ -1341,7 +1341,7 @@ $K.init = function(options)
 };
 
 // Globals
-$K.version = '7.1';
+$K.version = '7.1.1';
 $K.options = {};
 $K.modules = {};
 $K.services = {};
@@ -3612,6 +3612,7 @@ $K.add('service', 'utils', {
             this._openCaret();
             this._setPosition();
 
+            this.$element.addClass('dropdown-in');
             this.app.broadcast('dropdown.open', this);
             this.animate.run(this.$target, this.animationOpen, this._opened.bind(this));
         },
@@ -3654,7 +3655,8 @@ $K.add('service', 'utils', {
             var height = parseFloat(this.$target.css('height'));
             var placement = this._getPlacement();
             var width = parseFloat(this.$target.css('width'));
-            var leftFix = (this.$win.width() < (left + width)) ? (width - this.$element.width()) : 0;
+            var borderWidth = parseFloat(this.$element.css('border-left-width')) + parseFloat(this.$element.css('border-right-width'));
+            var leftFix = (this.$win.width() < (left + width)) ? (width - this.$element.width() - borderWidth) : 0;
 
             if (placement === 'top')
             {
@@ -3689,6 +3691,7 @@ $K.add('service', 'utils', {
             this.$win.off('.kube.dropdown');
 
             this._closeCaret();
+            this.$element.removeClass('dropdown-in');
             this.app.broadcast('dropdown.closed', this);
         },
         _openCaret: function()

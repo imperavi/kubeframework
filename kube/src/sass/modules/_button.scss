@@ -1,10 +1,6 @@
 // BUTTON
 // ---------------------------------------------------------------------------
 
-input[type="submit"] {
-    width: auto;
-}
-button,
 .button {
     &,
     &:active,
@@ -160,6 +156,11 @@ button,
         font-size: $button-small-font-size;
         min-height: $button-small-height;
         padding: $button-small-padding;
+    }
+    &.is-big {
+        font-size: $button-big-font-size;
+        min-height: $button-big-height;
+        padding: $button-big-padding;
     }
     // Loading
     &:empty.is-loading:before {

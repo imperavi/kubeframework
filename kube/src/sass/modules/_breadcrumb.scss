@@ -39,13 +39,3 @@
         text-decoration: none;
     }
 }
-.breadcrumb.is-links {
-    & a {
-        color: $color-link;
-    }
-    & a:hover {
-        @include transition;
-        color: $color-link-hover;
-        text-decoration: underline;
-    }
-}

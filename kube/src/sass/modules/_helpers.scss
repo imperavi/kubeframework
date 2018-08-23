@@ -16,6 +16,15 @@
 .is-container {
     @include make-container();
 }
+.is-container-row {
+    @include make-container-row();
+}
+.is-container-column {
+    @include make-container-column();
+}
+.is-items-middle {
+    @include make-items-middle();
+}
 
 // Layout
 .is-push-right {

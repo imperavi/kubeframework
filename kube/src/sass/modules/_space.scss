@@ -164,17 +164,21 @@
 }
 
 // stack
-.is-stack-none {
+.is-stack-none,
+.is-col-stack-none .is-col {
     margin-bottom: 0;
 }
 @each $name, $space in $map-space {
-  .is-stack-#{$name} { margin-bottom: $space; }
+  .is-stack-#{$name},
+  .is-col-stack-#{$name} .is-col { margin-bottom: $space; }
 }
 @include for-mobile {
-    .is-stack-none-mobile {
+    .is-stack-none-mobile,
+    .is-col-stack-none-mobile .is-col {
         margin-bottom: 0;
     }
     @each $name, $space in $map-space {
-        .is-stack-#{$name}-mobile { margin-bottom: $space; }
+        .is-stack-#{$name}-mobile,
+        .is-col-stack-#{$name}-mobile .is-col { margin-bottom: $space; }
     }
 }
