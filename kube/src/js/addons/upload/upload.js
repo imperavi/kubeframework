@@ -58,7 +58,11 @@
     	{
             if (this.params.type === 'image')
             {
-                this.$box = this.$element.find('.upload-item');
+                if(this.$element.find('.upload-item').length){
+                	this.$box = this.$element.find('.upload-item');
+                }else{
+                    this.$box = this.$element;
+                }
             }
             else
             {
@@ -127,7 +131,7 @@
             if (!this.params.type) return;
 
             var isFile = (this.params.type === 'file');
-            var $target = (isFile) ? this.$target : this.$element;
+            var $target = (this.$target) ? this.$target : this.$element;
             var fn = (isFile) ? '_removeFile' : '_removeImage';
 
             var $closes = $target.find('.close');
@@ -450,7 +454,12 @@
                     $item.append($img);
                     $item.append($hidden);
 
-                    this.$box.last().before($item);
+
+                    if(this.$target){
+                        this.$target.append($item);
+                    }else{
+                    	this.$box.last().before($item);
+                    }
                 }
                 // single
                 else
