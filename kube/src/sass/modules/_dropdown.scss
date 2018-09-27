@@ -26,6 +26,7 @@
         background: $dropdown-item-background;
     }
     & a:hover {
+        text-decoration: underline;
         color: $dropdown-item-hover-color-text;
         background: $dropdown-item-hover-background;
     }
@@ -42,6 +43,7 @@
     & span {
         &,
         &:hover {
+            text-decoration: none;
             cursor: text;
             color: $dropdown-item-active-color-text;
             background: $dropdown-item-active-background;

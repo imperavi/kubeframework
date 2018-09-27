@@ -22,11 +22,11 @@
 	&:hover,
 	&.is-upload-hover {
     	border-color: rgba($color-focus, .35);
-    	background-color: rgba($color-focus, .02);
+    	background-color: rgba($color-focus, .05);
 	}
 	&.is-upload-error {
     	border-color: rgba($color-error, .35);
-    	background-color: rgba($color-error, .02);
+    	background-color: rgba($color-error, .05);
 	}
 }
 .upload-target {
@@ -123,11 +123,11 @@
     	&:hover,
     	&.is-upload-hover {
         	border-color: rgba($color-focus, .35);
-        	background-color: rgba($color-focus, .02);
+        	background-color: rgba($color-focus, .05);
     	}
     	&.is-upload-error {
         	border-color: rgba($color-error, .35);
-        	background-color: rgba($color-error, .02);
+        	background-color: rgba($color-error, .05);
     	}
     }
 }

@@ -171,7 +171,7 @@
     	// BUILD
         _buildValue: function()
     	{
-        	var $target = (this.$target) ? this.$target : this.$element;
+        	var $target = (this.$target.length !== 0) ? this.$target : this.$element;
 
             this.value = ($target.get().tagName === 'INPUT') ? $target.val() : $target.text().trim();
     	},
@@ -453,7 +453,7 @@
 (function($K)
 {
     $K.add('class', 'datepicker.box', {
-        mixing: ['dom'],
+        extends: ['dom'],
         init: function(app, datepicker)
         {
             this.app = app;
@@ -630,7 +630,7 @@
 (function($K)
 {
     $K.add('class', 'datepicker.grid', {
-        mixing: ['dom'],
+        extends: ['dom'],
         init: function(app, datepicker)
         {
             this.app = app;

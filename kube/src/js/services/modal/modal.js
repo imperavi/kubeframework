@@ -64,12 +64,9 @@ $K.add('service', 'modal', {
     // private
     _broadcast: function(message)
     {
-        this.app.broadcast('modal.' + message, this, this.$modal, this.$modalForm);
+        message = 'modal.' + message;
 
-        if (this.params.name)
-        {
-            this.app.broadcast('modal.' + this.params.name + '.' + message, this, this.$modal, this.$modalForm);
-        }
+        this.app.broadcast([this.params.name, message], this, this.$modal, this.$modalForm);
     },
     _isOpened: function()
     {
@@ -195,6 +192,7 @@ $K.add('service', 'modal', {
             {
                 var $btn = $K.dom('<button>');
 
+                $btn.addClass('button');
                 $btn.html(commands[key].title);
                 $btn.attr('data-command', key);
 

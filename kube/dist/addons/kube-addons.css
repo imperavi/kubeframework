@@ -4,8 +4,8 @@
   box-shadow: 0 1px 3px rgba(17, 17, 19, 0.15);
   padding: 0;
   max-height: 200px;
-  border-bottom-left-radius: 0.1875rem;
-  border-bottom-right-radius: 0.1875rem;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
   border: 0 solid transparent;
   overflow: auto; }
   .autocomplete a {
@@ -18,8 +18,9 @@
     .autocomplete a:last-child {
       border-bottom-color: transparent; }
     .autocomplete a:hover, .autocomplete a.is-active {
-      background-color: #2c76ee;
-      color: rgba(255, 255, 255, 0.9); }
+      background-color: rgba(17, 17, 19, 0.04);
+      color: #111113;
+      text-decoration: underline; }
 
 .autocomplete-labels .label {
   margin-right: 4px;
@@ -56,7 +57,7 @@
   background-color: #fff;
   padding: 20px;
   border: 0 solid transparent;
-  border-radius: 0.1875rem;
+  border-radius: 4px;
   box-shadow: 0 6px 24px rgba(17, 17, 19, 0.12); }
   .datepicker.is-embed {
     border: 1px solid rgba(17, 17, 19, 0.05);
@@ -157,27 +158,35 @@
     color: #111113;
     line-height: 31px;
     text-decoration: none;
+    border-radius: 4px;
     background: #fff; }
-  .datepicker-cell a:hover {
-    background: #2c76ee;
-    color: #fff; }
   .datepicker-cell.is-out a {
     background-color: transparent;
-    color: rgba(17, 17, 19, 0.4); }
+    color: rgba(17, 17, 19, 0.5); }
   .datepicker-cell.is-out a:hover {
     color: #fff;
-    background-color: #2c76ee; }
+    background-color: #158df7; }
+  .datepicker-cell.is-today {
+    border-color: #fff; }
+    .datepicker-cell.is-today a {
+      background: #ee2455;
+      color: #fff; }
+    .datepicker-cell.is-today a:hover {
+      color: #fff; }
   .datepicker-cell.is-selected {
     border-color: #fff; }
     .datepicker-cell.is-selected a {
-      background: #2c76ee;
+      background: #111113;
       color: #fff; }
     .datepicker-cell.is-selected a:hover {
       color: #fff; }
+  .datepicker-cell a:hover {
+    background: #158df7;
+    color: #fff; }
   .datepicker-cell.is-disabled a,
   .datepicker-cell.is-disabled a:hover {
     background-color: #fff;
-    color: rgba(17, 17, 19, 0.3);
+    color: rgba(17, 17, 19, 0.4);
     cursor: default; }
 
 .editable[placeholder]:empty:before {
@@ -199,6 +208,10 @@
     -moz-appearance: textfield;
     width: auto;
     text-align: center; }
+  .input-number input {
+    border-radius: 0;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent; }
   .input-number .is-up,
   .input-number .is-down {
     width: 32px;
@@ -219,10 +232,48 @@
       background-color: rgba(17, 17, 19, 0.04); }
   .input-number .is-up {
     border-left-color: transparent;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
     margin-left: -1px; }
+    .input-number .is-up:hover {
+      border-radius: 4px; }
   .input-number .is-down {
     border-right-color: transparent;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
     margin-right: -1px; }
+    .input-number .is-down:hover {
+      border-radius: 4px; }
+  .input-number .input-number-input input {
+    border-left: 1px solid rgba(17, 17, 19, 0.1);
+    border-right: 1px solid transparent; }
+  .input-number input:hover,
+  .input-number .input-number-input input:hover {
+    border: 1px solid rgba(17, 17, 19, 0.2); }
+  .input-number input:hover,
+  .input-number .input-number-input input:hover {
+    border: 1px solid rgba(17, 17, 19, 0.2); }
+  .input-number input:focus,
+  .input-number .input-number-input input:focus {
+    border: 1px solid rgba(21, 141, 247, 0.5); }
+  .input-number input.is-error,
+  .input-number .input-number-input input.is-error {
+    border: 1px solid rgba(238, 36, 85, 0.5); }
+    .input-number input.is-error:focus,
+    .input-number .input-number-input input.is-error:focus {
+      border-color: rgba(238, 36, 85, 0.75); }
+  .input-number input.is-success,
+  .input-number .input-number-input input.is-success {
+    border: 1px solid rgba(32, 188, 113, 0.5); }
+    .input-number input.is-success:focus,
+    .input-number .input-number-input input.is-success:focus {
+      border-color: rgba(32, 188, 113, 0.75); }
+  .input-number input.is-warning,
+  .input-number .input-number-input input.is-warning {
+    border: 1px solid rgba(255, 105, 81, 0.5); }
+    .input-number input.is-warning:focus,
+    .input-number .input-number-input input.is-warning:focus {
+      border-color: rgba(255, 105, 81, 0.75); }
   .input-number .input-number-nav {
     position: relative;
     width: 24px;
@@ -234,13 +285,20 @@
       cursor: pointer;
       width: 24px;
       height: 50%;
-      line-height: 20px; }
+      line-height: 20px;
+      border: none; }
     .input-number .input-number-nav .is-up {
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0;
       top: 0;
       right: 0;
-      border-bottom-color: transparent; }
+      border-top: 1px solid rgba(17, 17, 19, 0.1);
+      border-right: 1px solid rgba(17, 17, 19, 0.1); }
     .input-number .input-number-nav .is-down {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 4px;
       border-right: 1px solid rgba(17, 17, 19, 0.1);
+      border-bottom: 1px solid rgba(17, 17, 19, 0.1);
       right: 0;
       bottom: 0; }
 
@@ -265,13 +323,13 @@
   box-shadow: 0 1px 2px rgba(17, 17, 19, 0.2) inset;
   background-color: rgba(17, 17, 19, 0.1);
   border: 0 solid transparent;
-  border-radius: 0.1875rem; }
+  border-radius: 4px; }
 
 .slider-fill {
   position: absolute;
   height: 4px;
-  background-color: rgba(44, 118, 238, 0.7);
-  border-radius: 0.1875rem;
+  background-color: rgba(21, 141, 247, 0.7);
+  border-radius: 4px;
   box-shadow: 0 1px 2px rgba(17, 17, 19, 0.2) inset; }
 
 .slider-handle {
@@ -308,24 +366,24 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: 2px dashed rgba(44, 118, 238, 0.3);
-  border-radius: 0.1875rem;
+  border: 2px dashed rgba(21, 141, 247, 0.3);
+  border-radius: 4px;
   height: 120px;
   cursor: pointer; }
   .upload .upload-placeholder {
-    color: rgba(44, 118, 238, 0.5);
+    color: rgba(21, 141, 247, 0.5);
     font-style: italic;
     font-size: 0.875em; }
   .upload:hover, .upload.is-upload-hover {
-    border-color: rgba(44, 118, 238, 0.35);
-    background-color: rgba(44, 118, 238, 0.02); }
+    border-color: rgba(21, 141, 247, 0.35);
+    background-color: rgba(21, 141, 247, 0.05); }
   .upload.is-upload-error {
-    border-color: rgba(245, 62, 83, 0.35);
-    background-color: rgba(245, 62, 83, 0.02); }
+    border-color: rgba(238, 36, 85, 0.35);
+    background-color: rgba(238, 36, 85, 0.05); }
 
 .upload-target {
-  background-color: rgba(44, 118, 238, 0.02);
-  border: 1px solid rgba(44, 118, 238, 0.1);
+  background-color: rgba(21, 141, 247, 0.02);
+  border: 1px solid rgba(21, 141, 247, 0.1);
   padding: 4px 8px; }
   .upload-target:empty {
     padding: 0;
@@ -358,7 +416,7 @@
     float: left;
     width: 120px;
     height: 120px;
-    border: 2px dashed rgba(44, 118, 238, 0.3);
+    border: 2px dashed rgba(21, 141, 247, 0.3);
     background-color: #fff;
     cursor: pointer;
     border-radius: 6px;
@@ -369,7 +427,7 @@
     margin-bottom: 16px; }
     .upload-box .upload-item.is-uploaded {
       border-style: solid;
-      border-color: rgba(44, 118, 238, 0.35); }
+      border-color: rgba(21, 141, 247, 0.35); }
     .upload-box .upload-item img {
       position: relative;
       z-index: 2;
@@ -382,7 +440,7 @@
       z-index: 3;
       top: -4px;
       right: -8px;
-      background-color: #f53e53;
+      background-color: #ee2455;
       color: #fff;
       opacity: 1; }
       .upload-box .upload-item .close:hover {
@@ -398,10 +456,10 @@
       font-size: 40px;
       line-height: 1;
       font-weight: normal;
-      color: rgba(44, 118, 238, 0.5); }
+      color: rgba(21, 141, 247, 0.5); }
     .upload-box .upload-item:hover, .upload-box .upload-item.is-upload-hover {
-      border-color: rgba(44, 118, 238, 0.35);
-      background-color: rgba(44, 118, 238, 0.02); }
+      border-color: rgba(21, 141, 247, 0.35);
+      background-color: rgba(21, 141, 247, 0.05); }
     .upload-box .upload-item.is-upload-error {
-      border-color: rgba(245, 62, 83, 0.35);
-      background-color: rgba(245, 62, 83, 0.02); }
+      border-color: rgba(238, 36, 85, 0.35);
+      background-color: rgba(238, 36, 85, 0.05); }

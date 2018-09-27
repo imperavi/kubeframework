@@ -1,13 +1,16 @@
-@mixin make-label($back, $text) {
-    background: $back;
-    color: $text;
+@mixin make-label($color) {
+    background-color: rgba($color, .07);
+    color: $color;
     &.is-secondary {
-        background: none;
-        color: $back;
-        border-color: $back;
+        background-color: transparent;
+        color: $color;
+        border-color: rgba($color, .3);
     }
     &.is-tertiary {
-        background: none;
-        color: $back;
+        background-color: transparent;
+        color: $color;
     }
+	& .close:hover {
+        background-color: $color;
+	}
 }

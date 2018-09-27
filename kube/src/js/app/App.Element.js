@@ -1,11 +1,10 @@
-var KubeElement = function(app, $el, moduleName)
+App.Element = function(app, $el)
 {
     this.app = app;
-    this.utils = app.utils;
     this.parse($el);
 };
 
-KubeElement.prototype = {
+App.Element.prototype = {
     isOpened: function()
     {
         return !this.isClosed();
@@ -16,4 +15,4 @@ KubeElement.prototype = {
     }
 };
 
-$K.inherit(KubeElement, Dom);
+$K.inherit(App.Element, Dom.prototype);

@@ -110,6 +110,15 @@ select {
             box-shadow: $input-success-focus-box-shadow;
     	}
     }
+    &.is-warning  {
+        background-color: $input-warning-background;
+    	border: $input-warning-border-width $input-warning-border-style $input-warning-border-color;
+        box-shadow: $input-warning-box-shadow;
+    	&:focus {
+            border-color: $input-warning-focus-border-color;
+            box-shadow: $input-warning-focus-box-shadow;
+    	}
+    }
     &:disabled,
     &.is-disabled {
         &,
@@ -177,6 +186,7 @@ label {
     &.is-checkbox,
     & .is-desc,
     & .is-success,
+    & .is-warning,
     & .is-error {
     	text-transform: none;
     	font-weight: normal;
@@ -207,9 +217,14 @@ form {
             font-size: $font-size-smaller;
             color: $color-error;
         }
+        &.is-warning {
+            font-size: $font-size-smaller;
+            color: $color-warning;
+        }
     }
     & span.is-success,
-    & span.is-error {
+    & span.is-error,
+    & span.is-warning {
         margin-left: $space-2;
     }
     & .is-desc {
@@ -312,11 +327,22 @@ fieldset > .form-item:last-child {
 		color: $input-append-color-text;
 	}
 	& a {
-    	font-size: 1rem;
-    	color: rgba($color-black, .6);
+
+    	font-size: $input-append-font-size;
+    	color: $color-link;
     	text-decoration: none;
     	&:hover {
+        	text-decoration: underline;
+    	}
+	}
+	& a.icon,
+	& a[class^="icon-kube-"],
+	& a[class*=" icon-kube-"] {
+    	font-size: 1rem;
+    	color: rgba($color-black, .6);
+    	&:hover {
         	color: $color-black;
+        	text-decoration: none;
     	}
 	}
 }

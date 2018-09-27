@@ -1,11 +1,10 @@
-var Target = function(app, selector, moduleName)
+App.Target = function(app, selector)
 {
     this.app = app;
-    this.utils = app.utils;
     this.parse(selector);
 };
 
-Target.prototype = {
+App.Target.prototype = {
     isOpened: function()
     {
         return !this.isClosed();
@@ -28,4 +27,4 @@ Target.prototype = {
     }
 };
 
-$K.inherit(Target, Dom);
+$K.inherit(App.Target, Dom.prototype);

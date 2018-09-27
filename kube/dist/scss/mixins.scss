@@ -185,6 +185,9 @@
         &.is-disabled {
             color: rgba($color-black, .5);
             border-color: rgba($color-black, .3);
+            &:hover {
+                background-color: transparent;
+            }
         }
 	    &.is-loading:hover:before {
     	    border-color: rgba($color-text, .25);
@@ -195,7 +198,7 @@
         background: none;
         color: $color-back;
         &:hover {
-            color: $color-black;
+            color: $color-back;
         }
         &:disabled,
         &.is-disabled {
@@ -211,18 +214,21 @@
 	    }
     }
 }
-@mixin make-label($back, $text) {
-    background: $back;
-    color: $text;
+@mixin make-label($color) {
+    background-color: rgba($color, .07);
+    color: $color;
     &.is-secondary {
-        background: none;
-        color: $back;
-        border-color: $back;
+        background-color: transparent;
+        color: $color;
+        border-color: rgba($color, .3);
     }
     &.is-tertiary {
-        background: none;
-        color: $back;
+        background-color: transparent;
+        color: $color;
     }
+	& .close:hover {
+        background-color: $color;
+	}
 }
 // Clearfix
 @mixin clearfix() {

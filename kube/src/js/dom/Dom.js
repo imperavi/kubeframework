@@ -608,7 +608,7 @@ Dom.prototype = {
     {
         return this.each(function(node)
         {
-            if (!node.style || this._getRealDisplay(node) !== 'none') return;
+            if (!node.style || !this._hasDisplayNone(node)) return;
 
             var target = node.getAttribute('domTargetShow');
             var isHidden = (node.classList) ? node.classList.contains(DomHClass) : false;
@@ -639,9 +639,9 @@ Dom.prototype = {
     {
         return this.each(function(node)
         {
-            if (!node.style || this._getRealDisplay(node) === 'none') return;
+            if (!node.style || this._hasDisplayNone(node)) return;
 
-            var realDisplay = this._getRealDisplay(node);
+            var display = node.style.display;
             var target = node.getAttribute('domTargetHide');
 
             if (target === DomHClass)
@@ -654,7 +654,7 @@ Dom.prototype = {
             }
             else
             {
-                if (realDisplay !== 'block') node.setAttribute('domTargetShow', realDisplay);
+                if (display !== 'block') node.setAttribute('domTargetShow', display);
                 node.style.display = 'none';
             }
 
@@ -928,13 +928,11 @@ Dom.prototype = {
     {
         if (typeof node === 'undefined') return;
         if (typeof node === 'string') return node;
-        else if (node instanceof Node) return node.cloneNode(true);
+        else if (node instanceof Node || node.nodeType) return node.cloneNode(true);
         else if ('length' in node)
         {
             return [].map.call(this._toArray(node), function(el) { return el.cloneNode(true); });
         }
-
-        return node;
     },
     _slice: function(obj)
     {
@@ -1038,12 +1036,12 @@ Dom.prototype = {
         if (!el) return 0;
 
         var name = type.charAt(0).toUpperCase() + type.slice(1);
+        var result = 0;
         var style = getComputedStyle(el, null);
         var $el = new Dom(el);
-        var result = 0;
         var $targets = $el.parents().filter(function(node)
         {
-            return (getComputedStyle(node, null).display === 'none') ? node : false;
+            return (node.nodeType === 1 && getComputedStyle(node, null).display === 'none') ? node : false;
         });
 
         if (style.display === 'none') $targets.add(el);
@@ -1198,13 +1196,8 @@ Dom.prototype = {
 
         return str;
     },
-    _getRealDisplay: function(elem)
+    _hasDisplayNone: function(el)
     {
-        if (elem.currentStyle) return elem.currentStyle.display;
-        else if (window.getComputedStyle)
-        {
-            var computedStyle = window.getComputedStyle(elem, null);
-            return computedStyle.getPropertyValue('display');
-        }
+        return (el.style.display === 'none') || ((el.currentStyle) ? el.currentStyle.display : getComputedStyle(el, null).display) === 'none';
     }
 };

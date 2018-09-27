@@ -1,7 +1,7 @@
 (function($K)
 {
     $K.add('class', 'datepicker.grid', {
-        mixing: ['dom'],
+        extends: ['dom'],
         init: function(app, datepicker)
         {
             this.app = app;

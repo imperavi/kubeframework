@@ -16,10 +16,11 @@
     	padding-right: $space-8;
     	white-space: nowrap;
         color: $breadcrumb-color-text;
+        text-decoration: none;
     }
     & a:hover {
         @include transition;
-        color: $color-link-hover;
+        color: $color-link;
         text-decoration: underline;
     }
     & span:after,

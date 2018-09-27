@@ -33,19 +33,25 @@ $datepicker-cell-hover-text-color: #fff !default;
 
 // out
 $datepicker-out-background-color: transparent !default;
-$datepicker-out-text-color: rgba($color-black, .4) !default;
+$datepicker-out-text-color: $color-text-tertiary !default;
 $datepicker-out-hover-background-color: $color-focus !default;
 $datepicker-out-hover-text-color: #fff !default;
 
 // selected
 $datepicker-selected-border-color: #fff !default;
-$datepicker-selected-background-color: $color-focus !default;
+$datepicker-selected-background-color: $color-black !default;
 $datepicker-selected-text-color: #fff !default;
 $datepicker-selected-hover-text-color: #fff !default;
 
+// today
+$datepicker-today-border-color: #fff !default;
+$datepicker-today-background-color: $color-accent !default;
+$datepicker-today-text-color: #fff !default;
+$datepicker-today-hover-text-color: #fff !default;
+
 // disabled
 $datepicker-disabled-background-color: #fff !default;
-$datepicker-disabled-text-color: rgba($color-black, .3) !default;
+$datepicker-disabled-text-color: $color-text-disabled !default;
 
 // SCSS
 .datepicker {
@@ -150,7 +156,6 @@ $datepicker-disabled-text-color: rgba($color-black, .3) !default;
 	line-height: 32px;
 	margin-top: -1px;
 	margin-left: -1px;
-
 	font-size: $datepicker-cell-font-size;
 	border: 1px solid $datepicker-cell-border-color;
 
@@ -159,12 +164,9 @@ $datepicker-disabled-text-color: rgba($color-black, .3) !default;
 		color: $datepicker-cell-text-color;
 		line-height: 31px;
 		text-decoration: none;
+        border-radius: $border-radius;
 		background: $datepicker-cell-background-color;
     }
-    & a:hover {
-		background: $datepicker-cell-hover-background-color;
-		color: $datepicker-cell-hover-text-color;
-	}
 	&.is-out {
         & a {
             background-color: $datepicker-out-background-color;
@@ -173,6 +175,17 @@ $datepicker-disabled-text-color: rgba($color-black, .3) !default;
         & a:hover {
 		    color: $datepicker-out-hover-text-color;
 		    background-color: $datepicker-out-hover-background-color;
+		}
+	}
+	&.is-today {
+    	border-color: $datepicker-today-border-color;
+
+    	& a {
+    		background: $datepicker-today-background-color;
+    		color: $datepicker-today-text-color;
+        }
+        & a:hover {
+			color: $datepicker-today-hover-text-color;
 		}
 	}
 	&.is-selected {
@@ -186,6 +199,10 @@ $datepicker-disabled-text-color: rgba($color-black, .3) !default;
         & a:hover {
 			color: $datepicker-selected-hover-text-color;
 		}
+	}
+    & a:hover {
+		background: $datepicker-cell-hover-background-color;
+		color: $datepicker-cell-hover-text-color;
 	}
 	&.is-disabled {
     	& a,

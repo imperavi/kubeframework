@@ -1,5 +1,5 @@
 $K.add('class', 'modal.form', {
-    mixing: ['dom'],
+    extends: ['dom'],
     init: function(app, element)
     {
         this.app = app;

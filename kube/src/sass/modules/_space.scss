@@ -116,14 +116,14 @@
 }
 
 // outset
-.outset-none {
+.is-outset-none {
     margin: 0;
 }
 @each $name, $space in $map-space {
   .is-outset-#{$name} { margin: $space; }
 }
 @include for-mobile {
-    .outset-none-mobile {
+    .is-outset-none-mobile {
         margin: 0;
     }
     @each $name, $space in $map-space {
@@ -132,14 +132,14 @@
 }
 
 // outset x
-.outset-x-none {
+.is-outset-x-none {
     margin-left: 0; margin-right: 0;
 }
 @each $name, $space in $map-space {
   .is-outset-x-#{$name} { margin-left: $space; margin-right: $space; }
 }
 @include for-mobile {
-    .outset-x-none-mobile {
+    .is-outset-x-none-mobile {
         margin-left: 0; margin-right: 0;
     }
     @each $name, $space in $map-space {
@@ -148,14 +148,14 @@
 }
 
 // outset y
-.outset-y-none {
+.is-outset-y-none {
     margin-top: 0; margin-bottom: 0;
 }
 @each $name, $space in $map-space {
   .is-outset-y-#{$name} { margin-top: $space; margin-bottom: $space; }
 }
 @include for-mobile {
-    .outset-y-none-mobile {
+    .is-outset-y-none-mobile {
         margin-top: 0; margin-bottom: 0;
     }
     @each $name, $space in $map-space {

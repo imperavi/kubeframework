@@ -1,5 +1,5 @@
 $K.add('class', 'modal.element', {
-    mixing: ['dom'],
+    extends: ['dom'],
     init: function(app, template)
     {
         this.app = app;

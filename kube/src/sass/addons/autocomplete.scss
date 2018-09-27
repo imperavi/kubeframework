@@ -36,8 +36,9 @@ $autocomplete-border-color: transparent !default;
         }
         &:hover,
         &.is-active {
-            background-color: $color-focus;
-            color: rgba(#fff, .9);
+            background-color: rgba($color-black, .04);
+            color: $color-black;
+            text-decoration: underline;
         }
     }
 }

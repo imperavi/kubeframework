@@ -52,18 +52,17 @@
     }
     & a:hover {
         @include transition;
-        background-color: rgba($color-black, .05);
+        background-color: rgba($color-black, .04);
     }
     & a.is-disabled {
-        background-color: rgba($color-black, .05);
-        color: rgba($color-black, .5);
+        background-color: transparent;
+        color: rgba($color-black, .3);
     }
     & span,
     & a.is-current,
     & a.is-active {
-        background-color: $color-black;
-        border-color: $color-black;
-        color: #fff;
+        background-color: rgba($color-black, .04);
+        color: rgba($color-black, .5);
     }
     &.is-stacked {
         & a {
@@ -78,7 +77,7 @@
         & a:hover {
             background: none;
             text-decoration: underline;
-            color: $color-link-hover;
+            color: $color-link;
         }
         & a.is-prev:before,
         & a.is-next:after {

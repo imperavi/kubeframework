@@ -1,49 +1,50 @@
-// Init
+// Wrapper
 var $K = {};
-$K.app = false;
-$K.init = function(options)
-{
-    return new KubeApp(options, [].slice.call(arguments, 1));
-};
 
 // Globals
-$K.version = '7.1.1';
+$K.app = [];
+$K.version = '7.2.0';
 $K.options = {};
 $K.modules = {};
 $K.services = {};
+$K.plugins = {};
 $K.classes = {};
-$K.mixins = {};
+$K.extends = {};
 $K.lang = {};
 $K.dom = function(selector, context) { return new Dom(selector, context); };
 $K.ajax = Ajax;
 $K.Dom = Dom;
-$K.ready = Dom.ready;
 $K.env = {
     'module': 'modules',
     'service': 'services',
+    'plugin': 'plugins',
     'class': 'classes',
-    'mixin': 'mixins'
+    'extend': 'extends'
 };
 
-// Class
+// init class
 var KubeApp = function(options, args)
 {
     return ($K.app = new App(options));
 };
 
-// get
-$K.getApp = function()
+// init
+$K.init = function(options)
 {
-    return ($K.app) ? $K.app : $K.init();
+    return new KubeApp(options, [].slice.call(arguments, 1));
 };
 
 // api
 $K.api = function(name)
 {
-    var app = $K.getApp();
+    var app = $K.app;
     var args = [].slice.call(arguments, 1);
-    args.unshift(name);
-    app.api.apply(app, args);
+
+    if (app)
+    {
+        args.unshift(name);
+        app.api.apply(app, args);
+    }
 };
 
 // add
@@ -57,8 +58,8 @@ $K.add = function(type, name, obj)
         $K.lang = $K.extend(true, {}, $K.lang, obj.translations);
     }
 
-    // inherits
-    if (type === 'mixin')
+    // extend
+    if (type === 'extend')
     {
         $K[$K.env[type]][name] = obj;
     }
@@ -68,12 +69,12 @@ $K.add = function(type, name, obj)
         var F = function() {};
         F.prototype = obj;
 
-        // mixing
-        if (obj.mixing)
+        // extends
+        if (obj.extends)
         {
-            for (var i = 0; i < obj.mixing.length; i++)
+            for (var i = 0; i < obj.extends.length; i++)
             {
-                $K.inherit(F, $K.mixins[obj.mixing[i]]);
+                $K.inherit(F, $K.extends[obj.extends[i]]);
             }
         }
 
@@ -98,7 +99,7 @@ $K.create = function(name)
     var arr = name.split('.');
     var args = [].slice.call(arguments, 1);
 
-    var type = 'classes'
+    var type = 'classes';
     if (typeof $K.env[arr[0]] !== 'undefined')
     {
         type = $K.env[arr[0]];
@@ -107,6 +108,9 @@ $K.create = function(name)
 
     // construct
     var instance = new $K[type][name]();
+
+    instance._type = arr[0];
+    instance._name = name;
 
     // init
     if (instance.init)
@@ -122,8 +126,6 @@ $K.create = function(name)
 // inherit
 $K.inherit = function(current, parent)
 {
-    parent = parent.prototype || parent;
-
     var F = function () {};
     F.prototype = parent;
     var f = new F();
@@ -141,7 +143,7 @@ $K.inherit = function(current, parent)
 };
 
 // error
-$K.error = function (exception)
+$K.error = function(exception)
 {
     throw exception;
 };

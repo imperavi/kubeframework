@@ -11,6 +11,7 @@
         align-items: center;
         justify-content: center;
     	vertical-align: middle;
+    	text-align: center;
 
     	font-family: inherit;
     	font-size: $button-default-font-size;
@@ -28,15 +29,21 @@
         padding: $button-default-padding;
         box-shadow: $button-default-box-shadow;
     	cursor: pointer;
-
     	line-height: 1.2;
 	}
 	& i,
 	& span {
+    	position: relative;
+    	top: 1px;
     	display: inline-block;
     	font-size: 16px;
-        margin-left: $space-4;
-        margin-right: $space-4;
+    	width: 24px;
+
+    	&.caret {
+        	top: 0;
+        	font-size: 110%;
+        	margin-right: -12px;
+    	}
 	}
     &:hover {
         @include transition;
@@ -92,6 +99,9 @@
             color: rgba($color-black, .5);
             border-color: rgba($color-black, .3);
             background: none;
+            &:hover {
+                background-color: none;
+            }
         }
     }
     // Tertiary
@@ -112,8 +122,18 @@
         padding: $button-tertiary-padding;
         box-shadow: $button-tertiary-box-shadow;
 
+    	& i,
+    	& span {
+        	top: 0;
+
+            &.caret {
+        	    top: -1px;
+        	    margin-left: -4px;
+            }
+        }
         &:hover {
-            color: $color-black;
+            color: $button-tertiary-color-text;
+            text-decoration: underline;
         }
         &.is-loading:before {
         	border-color: rgba($button-tertiary-color-text, 0.25);
@@ -132,6 +152,12 @@
         &:hover {
             opacity: .7;
         }
+        &:disabled,
+        &.is-disabled {
+            &:hover {
+                opacity: .55;
+            }
+        }
         &.is-secondary {
             background: none;
             color: $color-inverted;
@@ -142,6 +168,14 @@
                 color: rgba($color-black, .95);
                 border-color: $color-inverted;
             }
+            &:disabled,
+            &.is-disabled {
+                &:hover {
+                    opacity: .55;
+                    background: none;
+                    color: #fff;
+                }
+            }
         }
         &.is-tertiary {
             background: none;
@@ -149,19 +183,42 @@
             &:hover {
                 opacity: .6;
             }
-        }
+            &:disabled,
+            &.is-disabled {
+                &:hover {
+                    opacity: .55;
+                }
+            }
+	    }
     }
     // Small
     &.is-small {
         font-size: $button-small-font-size;
         min-height: $button-small-height;
         padding: $button-small-padding;
+        &.is-tertiary {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
     &.is-big {
         font-size: $button-big-font-size;
         min-height: $button-big-height;
         padding: $button-big-padding;
+        &.is-tertiary {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
+    &.is-loading,
+	&.is-icon {
+    	padding-left: 1em;
+    	padding-right: 1em;
+        &.is-tertiary {
+            padding-left: 0;
+            padding-right: 0;
+        }
+	}
     // Loading
     &:empty.is-loading:before {
         margin-right: 0;

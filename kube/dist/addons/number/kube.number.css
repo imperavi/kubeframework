@@ -9,6 +9,10 @@
     -moz-appearance: textfield;
     width: auto;
     text-align: center; }
+  .input-number input {
+    border-radius: 0;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent; }
   .input-number .is-up,
   .input-number .is-down {
     width: 32px;
@@ -29,10 +33,48 @@
       background-color: rgba(17, 17, 19, 0.04); }
   .input-number .is-up {
     border-left-color: transparent;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
     margin-left: -1px; }
+    .input-number .is-up:hover {
+      border-radius: 4px; }
   .input-number .is-down {
     border-right-color: transparent;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
     margin-right: -1px; }
+    .input-number .is-down:hover {
+      border-radius: 4px; }
+  .input-number .input-number-input input {
+    border-left: 1px solid rgba(17, 17, 19, 0.1);
+    border-right: 1px solid transparent; }
+  .input-number input:hover,
+  .input-number .input-number-input input:hover {
+    border: 1px solid rgba(17, 17, 19, 0.2); }
+  .input-number input:hover,
+  .input-number .input-number-input input:hover {
+    border: 1px solid rgba(17, 17, 19, 0.2); }
+  .input-number input:focus,
+  .input-number .input-number-input input:focus {
+    border: 1px solid rgba(21, 141, 247, 0.5); }
+  .input-number input.is-error,
+  .input-number .input-number-input input.is-error {
+    border: 1px solid rgba(238, 36, 85, 0.5); }
+    .input-number input.is-error:focus,
+    .input-number .input-number-input input.is-error:focus {
+      border-color: rgba(238, 36, 85, 0.75); }
+  .input-number input.is-success,
+  .input-number .input-number-input input.is-success {
+    border: 1px solid rgba(32, 188, 113, 0.5); }
+    .input-number input.is-success:focus,
+    .input-number .input-number-input input.is-success:focus {
+      border-color: rgba(32, 188, 113, 0.75); }
+  .input-number input.is-warning,
+  .input-number .input-number-input input.is-warning {
+    border: 1px solid rgba(255, 105, 81, 0.5); }
+    .input-number input.is-warning:focus,
+    .input-number .input-number-input input.is-warning:focus {
+      border-color: rgba(255, 105, 81, 0.75); }
   .input-number .input-number-nav {
     position: relative;
     width: 24px;
@@ -44,12 +86,19 @@
       cursor: pointer;
       width: 24px;
       height: 50%;
-      line-height: 20px; }
+      line-height: 20px;
+      border: none; }
     .input-number .input-number-nav .is-up {
+      border-top-left-radius: 0;
+      border-bottom-right-radius: 0;
       top: 0;
       right: 0;
-      border-bottom-color: transparent; }
+      border-top: 1px solid rgba(17, 17, 19, 0.1);
+      border-right: 1px solid rgba(17, 17, 19, 0.1); }
     .input-number .input-number-nav .is-down {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 4px;
       border-right: 1px solid rgba(17, 17, 19, 0.1);
+      border-bottom: 1px solid rgba(17, 17, 19, 0.1);
       right: 0;
       bottom: 0; }

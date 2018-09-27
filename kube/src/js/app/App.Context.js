@@ -1,17 +1,17 @@
-var Context = function(app, $el, name, id)
+App.Context = function(app, $el, name)
 {
     this.app = app;
     this.opts = app.opts;
 
     // build
-    this.moduleName = name;
     this.$element = this._buildElement($el);
     this.params = this._buildParams();
-    this.name = this._buildName();
+    this.name = this._buildName(name);
     this.$target = this._buildTarget();
 };
 
-Context.prototype = {
+App.Context.prototype = {
+
     // public
     getElement: function()
     {
@@ -29,10 +29,11 @@ Context.prototype = {
     {
         return this.name;
     },
+
     // private
-    _buildName: function()
+    _buildName: function(name)
     {
-        return (this.params.name) ? this.params.name : this.$element.attr('id');
+        return (this.params.name) ? this.params.name : name;
     },
     _buildParams: function()
     {
@@ -40,10 +41,10 @@ Context.prototype = {
     },
     _buildElement: function($el)
     {
-        return new KubeElement(this.app, $el, this.moduleName);
+        return new App.Element(this.app, $el);
     },
     _buildTarget: function()
     {
-        return new Target(this.app, this.params.target, this.moduleName);
+        return new App.Target(this.app, this.params.target);
     }
 };

@@ -224,14 +224,6 @@ figure .is-video-container {
 .caret {
     display: inline-block;
 }
-.button {
-    & .caret {
-        margin-right: -9px;
-        margin-top: -2px;
-        padding-left: 2px;
-        font-size: 110%;
-    }
-}
 
 // Loading
 .is-loading:before {

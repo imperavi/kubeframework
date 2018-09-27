@@ -24,6 +24,9 @@
         &.is-disabled {
             color: rgba($color-black, .5);
             border-color: rgba($color-black, .3);
+            &:hover {
+                background-color: transparent;
+            }
         }
 	    &.is-loading:hover:before {
     	    border-color: rgba($color-text, .25);
@@ -34,7 +37,7 @@
         background: none;
         color: $color-back;
         &:hover {
-            color: $color-black;
+            color: $color-back;
         }
         &:disabled,
         &.is-disabled {

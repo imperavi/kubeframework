@@ -57,12 +57,10 @@ $K.add('service', 'message', {
     // private
     _broadcast: function(message)
     {
-        this.app.broadcast('message.' + message, this);
+        message = 'message.' + message;
+        message = (this.params.name !== false ) ? [this.params.name, message] : message;
 
-        if (this.params.name)
-        {
-            this.app.broadcast('message.' + this.params.name + '.' + message, this);
-        }
+        this.app.broadcast(message, this);
     },
     _buildDefaults: function(data)
     {
@@ -108,6 +106,7 @@ $K.add('service', 'message', {
     _open: function()
     {
         this._broadcast('open');
+
         this._buildClose();
         this._buildType();
         this._buildPosition();
@@ -120,7 +119,7 @@ $K.add('service', 'message', {
     {
         if (this.$message)
         {
-            this._broadcast('close');
+             this._broadcast('close');
             this.animate.run(this.$message, this.currentAnimation[1], this._closed.bind(this));
         }
     },

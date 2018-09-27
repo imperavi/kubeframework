@@ -92,20 +92,16 @@
         },
 
         // private
-    	_getElementPosition: function()
-    	{
-        	return (this.$element.closest('.is-fixed').length !== 0) ? this.$element.position() : this.$element.offset();
-    	},
     	_getPlacement: function()
     	{
-        	var pos = this._getElementPosition();
+        	var pos = this.$element.position();
         	var height = parseFloat(this.$element.css('height')) + pos.top + parseFloat(this.$target.css('height'));
     		return (this.$doc.height() < height) ? 'top' : 'bottom';
     	},
     	_setPosition: function()
     	{
         	var elHeight = parseFloat(this.$element.css('height'));
-            var pos = this._getElementPosition();
+            var pos = this.$element.position();
             var top = pos.top + elHeight;
             var left = pos.left;
             var height = parseFloat(this.$target.css('height'));

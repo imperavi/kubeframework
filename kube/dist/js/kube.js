@@ -1,7 +1,7 @@
 /*
 	Kube UI Framework
-	Version 7.1.1
-	Updated: August 23, 2018
+	Version 7.2.0
+	Updated: September 27, 2018
 
 	http://imperavi.com/kube/
 
@@ -732,7 +732,7 @@ Dom.prototype = {
     {
         return this.each(function(node)
         {
-            if (!node.style || this._getRealDisplay(node) !== 'none') return;
+            if (!node.style || !this._hasDisplayNone(node)) return;
 
             var target = node.getAttribute('domTargetShow');
             var isHidden = (node.classList) ? node.classList.contains(DomHClass) : false;
@@ -763,9 +763,9 @@ Dom.prototype = {
     {
         return this.each(function(node)
         {
-            if (!node.style || this._getRealDisplay(node) === 'none') return;
+            if (!node.style || this._hasDisplayNone(node)) return;
 
-            var realDisplay = this._getRealDisplay(node);
+            var display = node.style.display;
             var target = node.getAttribute('domTargetHide');
 
             if (target === DomHClass)
@@ -778,7 +778,7 @@ Dom.prototype = {
             }
             else
             {
-                if (realDisplay !== 'block') node.setAttribute('domTargetShow', realDisplay);
+                if (display !== 'block') node.setAttribute('domTargetShow', display);
                 node.style.display = 'none';
             }
 
@@ -1052,13 +1052,11 @@ Dom.prototype = {
     {
         if (typeof node === 'undefined') return;
         if (typeof node === 'string') return node;
-        else if (node instanceof Node) return node.cloneNode(true);
+        else if (node instanceof Node || node.nodeType) return node.cloneNode(true);
         else if ('length' in node)
         {
             return [].map.call(this._toArray(node), function(el) { return el.cloneNode(true); });
         }
-
-        return node;
     },
     _slice: function(obj)
     {
@@ -1162,12 +1160,12 @@ Dom.prototype = {
         if (!el) return 0;
 
         var name = type.charAt(0).toUpperCase() + type.slice(1);
+        var result = 0;
         var style = getComputedStyle(el, null);
         var $el = new Dom(el);
-        var result = 0;
         var $targets = $el.parents().filter(function(node)
         {
-            return (getComputedStyle(node, null).display === 'none') ? node : false;
+            return (node.nodeType === 1 && getComputedStyle(node, null).display === 'none') ? node : false;
         });
 
         if (style.display === 'none') $targets.add(el);
@@ -1322,62 +1320,58 @@ Dom.prototype = {
 
         return str;
     },
-    _getRealDisplay: function(elem)
+    _hasDisplayNone: function(el)
     {
-        if (elem.currentStyle) return elem.currentStyle.display;
-        else if (window.getComputedStyle)
-        {
-            var computedStyle = window.getComputedStyle(elem, null);
-            return computedStyle.getPropertyValue('display');
-        }
+        return (el.style.display === 'none') || ((el.currentStyle) ? el.currentStyle.display : getComputedStyle(el, null).display) === 'none';
     }
 };
-// Init
+// Wrapper
 var $K = {};
-$K.app = false;
-$K.init = function(options)
-{
-    return new KubeApp(options, [].slice.call(arguments, 1));
-};
 
 // Globals
-$K.version = '7.1.1';
+$K.app = [];
+$K.version = '7.2.0';
 $K.options = {};
 $K.modules = {};
 $K.services = {};
+$K.plugins = {};
 $K.classes = {};
-$K.mixins = {};
+$K.extends = {};
 $K.lang = {};
 $K.dom = function(selector, context) { return new Dom(selector, context); };
 $K.ajax = Ajax;
 $K.Dom = Dom;
-$K.ready = Dom.ready;
 $K.env = {
     'module': 'modules',
     'service': 'services',
+    'plugin': 'plugins',
     'class': 'classes',
-    'mixin': 'mixins'
+    'extend': 'extends'
 };
 
-// Class
+// init class
 var KubeApp = function(options, args)
 {
     return ($K.app = new App(options));
 };
 
-// get
-$K.getApp = function()
+// init
+$K.init = function(options)
 {
-    return ($K.app) ? $K.app : $K.init();
+    return new KubeApp(options, [].slice.call(arguments, 1));
 };
 
 // api
 $K.api = function(name)
 {
-    var app = $K.getApp();
+    var app = $K.app;
     var args = [].slice.call(arguments, 1);
-    args.unshift(name);
-    app.api.apply(app, args);
+
+    if (app)
+    {
+        args.unshift(name);
+        app.api.apply(app, args);
+    }
 };
 
 // add
@@ -1391,8 +1385,8 @@ $K.add = function(type, name, obj)
         $K.lang = $K.extend(true, {}, $K.lang, obj.translations);
     }
 
-    // inherits
-    if (type === 'mixin')
+    // extend
+    if (type === 'extend')
     {
         $K[$K.env[type]][name] = obj;
     }
@@ -1402,12 +1396,12 @@ $K.add = function(type, name, obj)
         var F = function() {};
         F.prototype = obj;
 
-        // mixing
-        if (obj.mixing)
+        // extends
+        if (obj.extends)
         {
-            for (var i = 0; i < obj.mixing.length; i++)
+            for (var i = 0; i < obj.extends.length; i++)
             {
-                $K.inherit(F, $K.mixins[obj.mixing[i]]);
+                $K.inherit(F, $K.extends[obj.extends[i]]);
             }
         }
 
@@ -1432,7 +1426,7 @@ $K.create = function(name)
     var arr = name.split('.');
     var args = [].slice.call(arguments, 1);
 
-    var type = 'classes'
+    var type = 'classes';
     if (typeof $K.env[arr[0]] !== 'undefined')
     {
         type = $K.env[arr[0]];
@@ -1441,6 +1435,9 @@ $K.create = function(name)
 
     // construct
     var instance = new $K[type][name]();
+
+    instance._type = arr[0];
+    instance._name = name;
 
     // init
     if (instance.init)
@@ -1456,8 +1453,6 @@ $K.create = function(name)
 // inherit
 $K.inherit = function(current, parent)
 {
-    parent = parent.prototype || parent;
-
     var F = function () {};
     F.prototype = parent;
     var f = new F();
@@ -1475,7 +1470,7 @@ $K.inherit = function(current, parent)
 };
 
 // error
-$K.error = function (exception)
+$K.error = function(exception)
 {
     throw exception;
 };
@@ -1514,90 +1509,217 @@ $K.extend = function()
 
     return extended;
 };
-var Module = function(app, $el, name, id)
+var App = function(options)
+{
+    this.modules = {};
+    this.services = [];
+    this.queueStart = { 'service': {}, 'module': {} };
+    this.queueStop = { 'service': {}, 'module': {} };
+    this.started = false;
+    this.stopped = false;
+
+    // environment
+    this.namespace = 'kube';
+    this.dataNamespace = 'data-kube';
+    this.instancePrefix = 'kube-instance-';
+    this.rootOpts = options;
+    this.$win = $K.dom(window);
+    this.$doc = $K.dom(document);
+    this.$body = $K.dom('body');
+
+    // core services
+    this.coreServices = ['options', 'lang', 'utils'];
+    this.bindableServices = ['opts', 'lang', 'utils', '$win', '$doc', '$body']
+
+    this.utils = $K.create('service.utils', this);
+    this.opts = $K.create('service.options', this, 'global', options);
+    this.lang = $K.create('service.lang', this);
+
+    this.appcallback = new App.Callback(this);
+    this.appstarter = new App.Starter(this);
+    this.appbuilder = new App.Builder(this);
+    this.appbroadcast = new App.Broadcast(this);
+    this.appapi = new App.Api(this);
+
+    this.build();
+    this.start();
+};
+
+App.prototype = {
+
+    // build
+    build: function()
+    {
+        this.appbuilder.build();
+    },
+
+    // start & stop
+    start: function()
+    {
+        // start
+        this.stopped = false;
+        this.broadcast('start', this);
+
+        // starter
+        this.appstarter.start();
+
+        // started
+        this.broadcast('started', this);
+        this.started = true;
+    },
+    stop: function()
+    {
+        this.started = false;
+        this.stopped = true;
+
+        // stop
+        this.broadcast('stop', this);
+
+        // stopper
+        this.appstarter.stop();
+
+        // stopped
+        this.broadcast('stopped', this);
+    },
+
+    // starter & stopper
+    starter: function(instance, priority)
+    {
+        var type = (instance._type !== 'service') ? 'module' : instance._type;
+        this.queueStart[type][priority] = instance._name;
+    },
+    stopper: function(instance, priority)
+    {
+        var type = (instance._type !== 'service') ? 'module' : instance._type;
+        this.queueStop[type][priority] = instance._name;
+    },
+
+    // started & stopped
+    isStarted: function()
+    {
+        return this.started;
+    },
+    isStopped: function()
+    {
+        return this.stopped;
+    },
+
+    // broadcast
+    broadcast: function(name, sender)
+    {
+        this.appbroadcast.trigger(name, sender, [].slice.call(arguments, 2));
+    },
+
+    // callback
+    on: function(name, func)
+    {
+        this.appcallback.add(name, func);
+    },
+    off: function(name, func)
+    {
+        this.appcallback.remove(name, func);
+    },
+
+    // api
+    api: function(name)
+    {
+        this.appapi.trigger(name, [].slice.call(arguments, 1));
+    }
+};
+App.Module = function(app, $el, name, id)
 {
     this.app = app;
+    this.instancePrefix = app.instancePrefix;
 
     // local
     this.eventTypes = ['click', 'mouseover', 'mouseout', 'mousedown', 'mouseup', 'mousemove',
                        'keydown', 'keyup', 'submit', 'change', 'contextmenu', 'input'];
 
     // build
-    return this.build($el, name, id);
+    return this._build($el, name, id);
 };
 
-Module.prototype = {
-    build: function($el, name, id)
+App.Module.prototype = {
+    _build: function($el, name, id)
     {
-        var instance = $el.dataget('kube-instance-' + name);
+        var instance = $el.dataget(this.instancePrefix + name);
         if (!instance && typeof $K.modules[name] !== 'undefined')
         {
-            var context = new Context(this.app, $el, name, id);
+            var context = new App.Context(this.app, $el, id);
             var $target = context.getTarget();
 
             instance = $K.create('module.' + name, this.app, context);
+            instance._id = id;
 
-            $el.dataset('kube-instance-' + name, instance);
+            $el.dataset(this.instancePrefix + name, instance);
             $el.attr('data-loaded', true);
 
             // delegate events
             this._delegateModuleEvents(instance, $el, name);
 
             // delegate commands
-            this._delegateModuleCommands(instance, $el, name);
+            this._delegateModuleCommands(instance, $el);
 
             if ($target.is())
             {
-                this._delegateModuleCommands(instance, $target, name);
+                this._delegateModuleCommands(instance, $target);
             }
         }
 
         return instance;
     },
 
-    _delegateModuleCommands: function(instance, $el, name)
+    _delegateModuleCommands: function(instance, $el)
     {
         $el.find('[data-command]').each(function(node)
         {
-            var scope = node.getAttribute('data-scope');
-            if (!scope || scope === name)
-            {
-                this._delegateCommand(instance, name, node, node.getAttribute('data-command'));
-            }
+            this._delegateCommand(instance, node, node.getAttribute('data-command'));
 
         }.bind(this));
     },
-    _delegateCommand: function(instance, name, node, command)
+    _delegateCommand: function(instance, node, command)
     {
+        if (typeof instance._eventCommands === 'undefined') instance._eventCommands = [];
+
         var self = this;
         var $node = $K.dom(node);
+
+        instance._eventCommands.push($node);
+
         $node.on('click.generatedcommand', function(e)
         {
             e.preventDefault();
 
             var args = $node.data();
-            self.app.broadcast(name + '.' + command, instance, $node, args);
+            args.event = e;
+
+            self.app.broadcast(command, instance, $node, args);
         });
     },
-
     _delegateModuleEvents: function(instance, $el, name)
     {
         $el.find('[data-type]').each(function(node)
         {
-            var scope = node.getAttribute('data-scope');
-            if (!scope || scope === name)
+            var arr = node.getAttribute('data-type').split('.');
+            var type = arr[0];
+            var scope = name;
+
+            if (arr.length === 2)
             {
-                this._delegateEvent(instance, name, node, node.getAttribute('data-type'));
+                scope = arr[0];
+                type = arr[1];
+            }
+
+            if (scope === name)
+            {
+                this._delegateEvent(instance, name, node, type);
             }
 
         }.bind(this));
     },
     _delegateEvent: function(instance, name, node, type)
     {
-        if (typeof instance._eventNodes === 'undefined')
-        {
-            instance._eventNodes = [];
-        }
+        if (typeof instance._eventNodes === 'undefined') instance._eventNodes = [];
 
         var $node = $K.dom(node);
         var callback = function(e, eventType, element, type, args)
@@ -1621,20 +1743,20 @@ Module.prototype = {
         }
     }
 };
-var Context = function(app, $el, name, id)
+App.Context = function(app, $el, name)
 {
     this.app = app;
     this.opts = app.opts;
 
     // build
-    this.moduleName = name;
     this.$element = this._buildElement($el);
     this.params = this._buildParams();
-    this.name = this._buildName();
+    this.name = this._buildName(name);
     this.$target = this._buildTarget();
 };
 
-Context.prototype = {
+App.Context.prototype = {
+
     // public
     getElement: function()
     {
@@ -1652,10 +1774,11 @@ Context.prototype = {
     {
         return this.name;
     },
+
     // private
-    _buildName: function()
+    _buildName: function(name)
     {
-        return (this.params.name) ? this.params.name : this.$element.attr('id');
+        return (this.params.name) ? this.params.name : name;
     },
     _buildParams: function()
     {
@@ -1663,21 +1786,97 @@ Context.prototype = {
     },
     _buildElement: function($el)
     {
-        return new KubeElement(this.app, $el, this.moduleName);
+        return new App.Element(this.app, $el);
     },
     _buildTarget: function()
     {
-        return new Target(this.app, this.params.target, this.moduleName);
+        return new App.Target(this.app, this.params.target);
     }
 };
-var KubeElement = function(app, $el, moduleName)
+App.Callback = function(app)
 {
     this.app = app;
-    this.utils = app.utils;
+    this.opts = app.opts;
+
+    // local
+    this.callbacks = {};
+
+    // build
+    this._build();
+};
+
+App.Callback.prototype = {
+    stop: function()
+    {
+        this.callbacks = {};
+    },
+    add: function(name, handler)
+    {
+        if (typeof this.callbacks[name] === 'undefined') this.callbacks[name] = [];
+
+        this.callbacks[name].push(handler);
+    },
+    remove: function(name, handler)
+    {
+        if (handler === undefined)
+        {
+            delete this.callbacks[name];
+        }
+        else
+        {
+            for (var i = 0; i < this.callbacks[name].length; i++)
+            {
+                this.callbacks[name].splice(i, 1);
+            }
+
+            if (this.callbacks[name].length === 0)
+            {
+                delete this.callbacks[name];
+            }
+        }
+    },
+    trigger: function(name, args)
+    {
+        if (typeof this.callbacks[name] === 'undefined') return;
+
+        for (var i = 0; i < this.callbacks[name].length; i++)
+        {
+            this.callbacks[name][i].apply(this.app, args);
+        }
+    },
+
+    // private
+    _build: function()
+    {
+        if (this.opts.callbacks)
+        {
+            for (var name in this.opts.callbacks)
+            {
+                if (typeof this.opts.callbacks[name] === 'function')
+                {
+                    if (typeof this.callbacks[name] === 'undefined') this.callbacks[name] = [];
+                    this.callbacks[name].push(this.opts.callbacks[name]);
+                }
+                else
+                {
+                    for (var key in this.opts.callbacks[name])
+                    {
+                        if (typeof this.callbacks[name + '.' + key] === 'undefined') this.callbacks[name + '.' + key] = [];
+                        this.callbacks[name + '.' + key].push(this.opts.callbacks[name][key]);
+                    }
+
+                }
+            }
+        }
+    }
+};
+App.Element = function(app, $el)
+{
+    this.app = app;
     this.parse($el);
 };
 
-KubeElement.prototype = {
+App.Element.prototype = {
     isOpened: function()
     {
         return !this.isClosed();
@@ -1688,15 +1887,14 @@ KubeElement.prototype = {
     }
 };
 
-$K.inherit(KubeElement, Dom);
-var Target = function(app, selector, moduleName)
+$K.inherit(App.Element, Dom.prototype);
+App.Target = function(app, selector)
 {
     this.app = app;
-    this.utils = app.utils;
     this.parse(selector);
 };
 
-Target.prototype = {
+App.Target.prototype = {
     isOpened: function()
     {
         return !this.isClosed();
@@ -1719,194 +1917,143 @@ Target.prototype = {
     }
 };
 
-$K.inherit(Target, Dom);
-var App = function(options)
+$K.inherit(App.Target, Dom.prototype);
+App.Api = function(app)
 {
-    this.module = {};
-    this.services = [];
-    this.servicesIndex = 0;
-
-    // start/stop
-    this.started = false;
-    this.stopped = false;
-
-    this.rootOpts = options;
-    this.$win = $K.dom(window);
-    this.$doc = $K.dom(document);
-    this.$body = $K.dom('body');
-
-    // core services
-    this.utils = $K.create('service.utils', this);
-    this.opts = $K.create('service.options', this, 'global', options);
-    this.lang = $K.create('service.lang', this);
-
-    // build
-    this.buildServices();
-    this.buildModules();
-
-    // start
-    this.start();
+    this.app = app;
+    this.modules = app.modules;
 };
 
-App.prototype = {
-    // start
-    start: function()
+App.Api.prototype = {
+    trigger: function(name, args)
     {
-        this.stopped = false;
-        this.broadcast('start');
+        var arr = name.split('.');
+        var isNamed = (arr.length === 3);
+        var isApp = (arr.length === 1);
+        var isCallback = (arr[0] === 'on' || arr[0] === 'off');
 
-        // start services & modules
-        this.startStopServices('start');
-        this.startStopModules('start');
+        var module = arr[0];
+        var method = arr[1];
+        var id = false;
 
-        this.broadcast('started');
-        this.started = true;
-    },
-    stop: function()
-    {
-        this.started = false;
-        this.stopped = true;
-        this.broadcast('stop');
-
-        // stop services & modules
-        this.startStopServices('stop');
-        this.startStopModules('stop');
-
-        this.broadcast('stopped');
-
-        // stop app
-        $K.app = false;
-    },
-    startStopServices: function(type)
-    {
-        for (var i = 0; i < this.services.length; i++)
+        if (isApp)
         {
-            this.callInstanceMethod(this.services[i], type);
+            module = false;
+            method = arr[0];
         }
-    },
-    startStopModules: function(type)
-    {
-        for (var moduleName in this.module)
+        else if (isNamed)
         {
-            for (var key in this.module[moduleName])
-            {
-                var instance = this.module[moduleName][key];
+            method = arr[2];
+            id = arr[1];
+        }
 
-                this.callInstanceMethod(instance, type);
-                this.stopModuleEvents(instance, type);
+        // app
+        if (isApp)
+        {
+            if (typeof this.app[method] === 'function')
+            {
+                return this._call(this.app, method, args);
             }
         }
-    },
-    stopModuleEvents: function(instance, type)
-    {
-        if (type === 'stop' && typeof instance._eventNodes !== 'undefined')
+        // callback
+        else if (isCallback)
         {
-            for (var z = 0; z < instance._eventNodes.length; z++)
+            return (module === 'on') ? this.app.on(module, args[0]) : this.app.off(module, args[0] || undefined);
+        }
+        else
+        {
+            // service
+            if (this._isInstanceExists(this.app, module))
             {
-                instance._eventNodes[z].off('.generatedevent');
+                return this._call(this.app[module], method, args);
+            }
+            // module / plugin / addon
+            else if (this._isInstanceExists(this.modules, module))
+            {
+                this._doApi(module, method, id, args)
             }
         }
     },
 
-    // started & stopped
-    isStarted: function()
+    // private
+    _isInstanceExists: function(obj, name)
     {
-        return this.started;
+        return (typeof obj[name] !== 'undefined');
     },
-    isStopped: function()
+    _doApi: function(module, method, id, args)
     {
-        return this.stopped;
-    },
-
-    // build
-    buildServices: function()
-    {
-        var core = ['options', 'lang', 'utils'];
-        var bindable = ['utils', 'opts', 'lang', '$win', '$doc', '$body'];
-        for (var name in $K.services)
+        for (var key in this.modules[module])
         {
-            if (core.indexOf(name) === -1)
+            if (id === false || id === key)
             {
-                this[name] = $K.create('service.' + name, this);
-                this[name].serviceName = name;
-                this.services.push(name);
-                bindable.push(name);
-            }
-        }
-
-        // binding
-        for (var i = 0; i < this.services.length; i++)
-        {
-            var service = this.services[i];
-            for (var z = 0; z < bindable.length; z++)
-            {
-                var inj = bindable[z];
-                if (service !== inj)
-                {
-                    this[service][inj] = this[inj];
-                }
+                var instance = this.modules[module][key];
+                this._call(instance, method, args);
             }
         }
     },
-    buildModules: function()
+    _call: function(instance, method, args)
     {
-        this.$doc.find('[data-kube]').each(function(node, i)
+        if (typeof instance[method] === 'function')
         {
-            var $el = $K.dom(node);
-            var name = $el.attr('data-kube');
-            var id = ($el.attr('id')) ? $el.attr('id') : name + '-' + i;
-            id = ($el.attr('data-name')) ? $el.attr('data-name') : id;
-            var instance = new Module(this, $el, name, id);
-            instance.moduleName = name;
-
-            this.storeModule(instance, name, id);
-            this.servicesIndex++;
-
-        }.bind(this));
-    },
-    storeModule: function(instance, name, id)
-    {
-        if (instance)
-        {
-            if (typeof this.module[name] === 'undefined')
-            {
-                this.module[name] = {};
-            }
-
-            this.module[name][id] = instance;
+            return instance[method].apply(instance, args);
         }
+    }
+};
+App.Broadcast = function(app)
+{
+    this.app = app;
+    this.modules = app.modules;
+    this.callback = app.appcallback;
+};
+
+App.Broadcast.prototype = {
+    trigger: function(name, sender, args)
+    {
+        if (Array.isArray(name))
+        {
+            sender._id = name[0];
+            name = name[1];
+        }
+        else if (sender && typeof sender.context !== 'undefined')
+        {
+            sender._id = sender.context.getName();
+        }
+
+        args.unshift(sender);
+
+        for (var moduleName in this.modules)
+        {
+            for (var key in this.modules[moduleName])
+            {
+                var instance = this.modules[moduleName][key];
+                this._call(instance, name, args, sender);
+            }
+        }
+
+        this.callback.trigger(name, args);
     },
 
-    // messaging
-    broadcast: function(name, module)
+
+    // private
+    _call: function(instance, name, args, sender)
     {
-        var args = [].slice.call(arguments, 2);
-        args.unshift(module);
-
-        this.doBroadcast(name, args);
-
-        if (module && typeof module.context !== 'undefined')
+        // new
+        if (typeof instance['onmessage'] !== 'undefined')
         {
-            var elementName = module.context.getName();
             var arr = name.split('.');
-            this.doBroadcast(arr[0] + '.' + elementName + '.' + arr[1], args);
-        }
-    },
-    doBroadcast: function(name, args)
-    {
-        for (var moduleName in this.module)
-        {
-            for (var key in this.module[moduleName])
+            var func = instance['onmessage'][arr[0]];
+
+            if (arr.length === 1 && typeof func === 'function')
             {
-                var instance = this.module[moduleName][key];
-                this.callEventHandler(instance, name, args);
+                func.apply(instance, args);
+            }
+            else if (arr.length === 2 && typeof func !== 'undefined' && typeof func[arr[1]] === 'function')
+            {
+                func[arr[1]].apply(instance, args);
             }
         }
-    },
-    callEventHandler: function(instance, name, args)
-    {
-        name = name.replace('-', '');
 
+        // 7.1.1 compatibility
         var arr = name.split('.');
         if (arr.length === 1)
         {
@@ -1918,37 +2065,197 @@ App.prototype = {
         else
         {
             arr[0] = 'on' + arr[0];
-            var func = this.utils.checkProperty(instance, arr);
+
+            // without id
+            var func = this.app.utils.checkProperty(instance, arr);
             if (typeof func === 'function')
             {
                 func.apply(instance, args);
             }
-        }
-    },
 
-    // api
-    api: function(name)
-    {
-        var args = [].slice.call(arguments, 1);
-        var arr = name.split('.');
-        var method = (arr.length === 3) ? arr[2] : arr[1];
-        var id = (arr.length === 3) ? arr[1] : false;
-
-        this.doApi(arr[0], id, method, args);
-    },
-    doApi: function(moduleName, id, method, args)
-    {
-        if (typeof this.module[moduleName] === 'undefined') return;
-        for (var key in this.module[moduleName])
-        {
-            if (id === false || id === key)
+            // with id
+            if (sender && sender._id)
             {
-                var instance = this.module[moduleName][key];
-                this.callInstanceMethod(instance, method, args);
+                var idArr = [arr[0], sender._id, arr[1]];
+                var func = this.app.utils.checkProperty(instance, idArr);
+                if (typeof func === 'function')
+                {
+                    func.apply(instance, args);
+                }
+            }
+        }
+    }
+};
+App.Builder = function(app)
+{
+    this.app = app;
+    this.opts = app.opts;
+    this.$doc = app.$doc;
+    this.dataNamespace = app.dataNamespace;
+};
+
+App.Builder.prototype = {
+    build: function()
+    {
+        this._buildServices();
+        this._buildModules();
+    },
+
+    // private
+    _buildServices: function()
+    {
+        var services = [];
+        var startableServices = [];
+        for (var name in $K.services)
+        {
+            if (this.app.coreServices.indexOf(name) === -1)
+            {
+                this.app[name] = $K.create('service.' + name, this.app);
+                this.app.bindableServices.push(name);
+                services.push(name);
+                startableServices.push(name);
+            }
+        }
+
+        // make core services to use another services
+        for (var i = 0; i < this.app.coreServices.length; i++)
+        {
+            var name = this.app.coreServices[i];
+            if (name !== 'options') services.push(name);
+        }
+
+        // binding
+        for (var i = 0; i < services.length; i++)
+        {
+            var service = services[i];
+            for (var z = 0; z < this.app.bindableServices.length; z++)
+            {
+                var inj = this.app.bindableServices[z];
+                if (service !== inj)
+                {
+                    this.app[service][inj] = this.app[inj];
+                }
+            }
+        }
+
+        this.app.services = startableServices;
+    },
+    _buildModules: function()
+    {
+        this.$doc.find('[' + this.dataNamespace + ']').each(function(node, i)
+        {
+            var $el = $K.dom(node);
+            var name = $el.attr(this.dataNamespace);
+            var id = ($el.attr('id')) ? $el.attr('id') : name + '-' + i;
+            id = ($el.attr('data-name')) ? $el.attr('data-name') : id;
+            var instance = new App.Module(this.app, $el, name, id);
+
+            this._storeElementModule(instance, name, id);
+
+        }.bind(this));
+    },
+    _storeElementModule: function(instance, name, id)
+    {
+        if (instance)
+        {
+            if (typeof this.app.modules[name] === 'undefined')
+            {
+                this.app.modules[name] = {};
+            }
+
+            this.app.modules[name][id] = instance;
+        }
+    }
+};
+App.Starter = function(app)
+{
+    this.app = app;
+    this.queue = {
+        'start': app.queueStart,
+        'stop': app.queueStop
+    };
+    this.priority = {
+        'start': { 'service': [], 'module': [] },
+        'stop': { 'service': [], 'module': [] }
+    };
+};
+
+App.Starter.prototype = {
+    start: function()
+    {
+        this._stopStart('service', 'start');
+        this._stopStart('module', 'start');
+    },
+    stop: function()
+    {
+        this._stopStart('service', 'stop');
+        this._stopStart('module', 'stop');
+    },
+
+    // private
+    _stopStart: function(type, method)
+    {
+        // priority
+        var queue = this.queue[method][type];
+        for (var key in queue)
+        {
+            var name = queue[key];
+            var instance = (type === 'service') ? this.app[name] : this.app.modules[name];
+
+            this._callInstances(type, method, instance);
+            this.priority[method][type].push(name);
+        }
+
+        // common
+        var modules = (type === 'service') ? this.app.services : this.app.modules;
+        for (var key in modules)
+        {
+            var name = (type === 'service') ? modules[key] : key;
+
+            if (this.priority[method][type].indexOf(name) === -1)
+            {
+                var instance = (type === 'service') ? this.app[name] : modules[name];
+                this._callInstances(type, method, instance);
             }
         }
     },
-    callInstanceMethod: function(instance, method, args)
+    _stopModuleEvents: function(method, instance)
+    {
+        if (method === 'stop')
+        {
+            if (typeof instance._eventNodes !== 'undefined')
+            {
+                for (var i = 0; i < instance._eventNodes.length; i++)
+                {
+                    instance._eventNodes[i].off('.generatedevent');
+                }
+            }
+
+            if (typeof instance._eventCommands !== 'undefined')
+            {
+                for (var i = 0; i < instance._eventCommands.length; i++)
+                {
+                    instance._eventCommands[i].off('.generatedcommand');
+                }
+            }
+        }
+    },
+    _callInstances: function(type, method, instance)
+    {
+        if (type === 'service')
+        {
+            this._call(instance, method);
+        }
+        else
+        {
+            for (var key in instance)
+            {
+                this._call(instance[key], method);
+                this._stopModuleEvents(method, instance[key]);
+            }
+        }
+    },
+    _call: function(instance, method, args)
     {
         if (typeof instance[method] === 'function')
         {
@@ -1956,7 +2263,7 @@ App.prototype = {
         }
     }
 };
-$K.add('mixin', 'dom', $K.Dom.prototype);
+$K.add('extend', 'dom', $K.Dom.prototype);
 $K.add('service', 'animate', {
     init: function(app)
     {
@@ -2442,12 +2749,10 @@ $K.add('service', 'message', {
     // private
     _broadcast: function(message)
     {
-        this.app.broadcast('message.' + message, this);
+        message = 'message.' + message;
+        message = (this.params.name !== false ) ? [this.params.name, message] : message;
 
-        if (this.params.name)
-        {
-            this.app.broadcast('message.' + this.params.name + '.' + message, this);
-        }
+        this.app.broadcast(message, this);
     },
     _buildDefaults: function(data)
     {
@@ -2493,6 +2798,7 @@ $K.add('service', 'message', {
     _open: function()
     {
         this._broadcast('open');
+
         this._buildClose();
         this._buildType();
         this._buildPosition();
@@ -2505,7 +2811,7 @@ $K.add('service', 'message', {
     {
         if (this.$message)
         {
-            this._broadcast('close');
+             this._broadcast('close');
             this.animate.run(this.$message, this.currentAnimation[1], this._closed.bind(this));
         }
     },
@@ -2588,12 +2894,9 @@ $K.add('service', 'modal', {
     // private
     _broadcast: function(message)
     {
-        this.app.broadcast('modal.' + message, this, this.$modal, this.$modalForm);
+        message = 'modal.' + message;
 
-        if (this.params.name)
-        {
-            this.app.broadcast('modal.' + this.params.name + '.' + message, this, this.$modal, this.$modalForm);
-        }
+        this.app.broadcast([this.params.name, message], this, this.$modal, this.$modalForm);
     },
     _isOpened: function()
     {
@@ -2719,6 +3022,7 @@ $K.add('service', 'modal', {
             {
                 var $btn = $K.dom('<button>');
 
+                $btn.addClass('button');
                 $btn.html(commands[key].title);
                 $btn.attr('data-command', key);
 
@@ -2786,7 +3090,7 @@ $K.add('service', 'modal', {
 });
 
 $K.add('class', 'modal.form', {
-    mixing: ['dom'],
+    extends: ['dom'],
     init: function(app, element)
     {
         this.app = app;
@@ -2830,7 +3134,7 @@ $K.add('class', 'modal.form', {
     }
 });
 $K.add('class', 'modal.element', {
-    mixing: ['dom'],
+    extends: ['dom'],
     init: function(app, template)
     {
         this.app = app;
@@ -2995,16 +3299,35 @@ $K.add('service', 'observer', {
     		var $el = $K.dom(node);
     		var name = $el.attr('data-kube');
             var id = ($el.attr('id')) ? $el.attr('id') : name + '-' + (self.app.servicesIndex + i);
-            var instance = new Module(self.app, $el, name, id);
+            var instance = new App.Module(self.app, $el, name, id);
 
-            self.app.storeModule(instance, name, id)
-            self.app.callInstanceMethod(instance, 'start');
+            self._storeElementModule(instance, name, id)
+            self._call(instance, 'start');
         });
 
         // $R
         if (typeof $R !== 'undefined')
         {
             $R('[data-redactor]');
+        }
+    },
+    _call: function(instance, method, args)
+    {
+        if (typeof instance[method] === 'function')
+        {
+            return instance[method].apply(instance, args);
+        }
+    },
+    _storeElementModule: function(instance, name, id)
+    {
+        if (instance)
+        {
+            if (typeof this.app.modules[name] === 'undefined')
+            {
+                this.app.modules[name] = {};
+            }
+
+            this.app.modules[name][id] = instance;
         }
     }
 });
@@ -3129,7 +3452,6 @@ $K.add('service', 'utils', {
             this.app.broadcast('alert.close', this);
             this.animate.run(this.$element, 'fadeOut', this._closed.bind(this));
         },
-
         // private
         _opened: function()
         {
@@ -3636,20 +3958,16 @@ $K.add('service', 'utils', {
         },
 
         // private
-    	_getElementPosition: function()
-    	{
-        	return (this.$element.closest('.is-fixed').length !== 0) ? this.$element.position() : this.$element.offset();
-    	},
     	_getPlacement: function()
     	{
-        	var pos = this._getElementPosition();
+        	var pos = this.$element.position();
         	var height = parseFloat(this.$element.css('height')) + pos.top + parseFloat(this.$target.css('height'));
     		return (this.$doc.height() < height) ? 'top' : 'bottom';
     	},
     	_setPosition: function()
     	{
         	var elHeight = parseFloat(this.$element.css('height'));
-            var pos = this._getElementPosition();
+            var pos = this.$element.position();
             var top = pos.top + elHeight;
             var left = pos.left;
             var height = parseFloat(this.$target.css('height'));

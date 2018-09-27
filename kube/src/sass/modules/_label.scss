@@ -68,9 +68,23 @@ a.label {
     text-align: center;
     font-size: $badge-font-size;
     line-height: $badge-line-height;
-    height: 16px;
+    height: 18px;
     border-radius: 64px;
-    min-width: 16px;
+    min-width: 18px;
     padding-left: $space-2;
     padding-right: $space-2;
+}
+
+// State
+.label.is-error {
+    @include make-label($color-error);
+}
+.label.is-focus {
+    @include make-label($color-focus);
+}
+.label.is-success {
+    @include make-label($color-success);
+}
+.label.is-warning {
+    @include make-label($color-warning);
 }

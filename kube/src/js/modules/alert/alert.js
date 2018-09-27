@@ -35,7 +35,6 @@
             this.app.broadcast('alert.close', this);
             this.animate.run(this.$element, 'fadeOut', this._closed.bind(this));
         },
-
         // private
         _opened: function()
         {
