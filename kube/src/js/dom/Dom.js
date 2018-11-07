@@ -343,7 +343,7 @@ Dom.prototype = {
 
             for (var key in attrs)
             {
-                if (reDataAttr.test(attrs[key].nodeName))
+                if (attrs[key] && reDataAttr.test(attrs[key].nodeName))
                 {
                     var dataName = attrs[key].nodeName.match(reDataAttr)[1];
                     var val = attrs[key].value;
