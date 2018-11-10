@@ -1,6 +1,5 @@
 var DomCache = [0];
-var DomExpando = 'data' + new Date();
-var DomDisplayCache = {};
+var DomExpando = 'data' + +new Date();
 var DomHClass = 'is-hidden';
 var DomHMClass = 'is-hidden-mobile';
 
@@ -417,6 +416,7 @@ Dom.prototype = {
 
         return cacheIndex;
     },
+
 
     // class
     addClass: function(value)

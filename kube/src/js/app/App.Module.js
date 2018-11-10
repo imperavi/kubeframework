@@ -5,7 +5,7 @@ App.Module = function(app, $el, name, id)
 
     // local
     this.eventTypes = ['click', 'mouseover', 'mouseout', 'mousedown', 'mouseup', 'mousemove',
-                       'keydown', 'keyup', 'submit', 'change', 'contextmenu', 'input'];
+                       'keydown', 'keyup', 'focus', 'submit', 'change', 'contextmenu', 'input'];
 
     // build
     return this._build($el, name, id);

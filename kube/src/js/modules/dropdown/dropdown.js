@@ -101,7 +101,7 @@
     	_setPosition: function()
     	{
         	var elHeight = parseFloat(this.$element.css('height'));
-            var pos = this.$element.position();
+            var pos = this.$element.offset();
             var top = pos.top + elHeight;
             var left = pos.left;
             var height = parseFloat(this.$target.css('height'));

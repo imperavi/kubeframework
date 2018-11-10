@@ -112,6 +112,6 @@ App.prototype = {
     // api
     api: function(name)
     {
-        this.appapi.trigger(name, [].slice.call(arguments, 1));
+        return this.appapi.trigger(name, [].slice.call(arguments, 1));
     }
 };

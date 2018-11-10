@@ -3,7 +3,7 @@ var $K = {};
 
 // Globals
 $K.app = [];
-$K.version = '7.2.0';
+$K.version = '7.2.1';
 $K.options = {};
 $K.modules = {};
 $K.services = {};

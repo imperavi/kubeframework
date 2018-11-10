@@ -1,7 +1,7 @@
 /*
 	Kube UI Framework
-	Version 7.2.0
-	Updated: September 27, 2018
+	Version 7.2.1
+	Updated: November 10, 2018
 
 	http://imperavi.com/kube/
 
@@ -502,6 +502,9 @@ a.is-color-black:hover,
 
 .is-smaller {
   font-size: 0.75em; }
+
+.is-text-left {
+  text-align: left; }
 
 .is-text-center {
   text-align: center; }
@@ -2088,6 +2091,8 @@ fieldset > .form-item:last-child {
   top: 1px;
   color: #111113;
   text-decoration: none; }
+  .nav-toggle:active {
+    color: #111113; }
   .nav-toggle:hover {
     color: #ee2455; }
 

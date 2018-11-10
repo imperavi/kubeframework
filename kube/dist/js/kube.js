@@ -1,7 +1,7 @@
 /*
 	Kube UI Framework
-	Version 7.2.0
-	Updated: September 27, 2018
+	Version 7.2.1
+	Updated: November 10, 2018
 
 	http://imperavi.com/kube/
 
@@ -123,8 +123,7 @@ AjaxRequest.prototype = {
     }
 };
 var DomCache = [0];
-var DomExpando = 'data' + new Date();
-var DomDisplayCache = {};
+var DomExpando = 'data' + +new Date();
 var DomHClass = 'is-hidden';
 var DomHMClass = 'is-hidden-mobile';
 
@@ -467,7 +466,7 @@ Dom.prototype = {
 
             for (var key in attrs)
             {
-                if (reDataAttr.test(attrs[key].nodeName))
+                if (attrs[key] && reDataAttr.test(attrs[key].nodeName))
                 {
                     var dataName = attrs[key].nodeName.match(reDataAttr)[1];
                     var val = attrs[key].value;
@@ -541,6 +540,7 @@ Dom.prototype = {
 
         return cacheIndex;
     },
+
 
     // class
     addClass: function(value)
@@ -1330,7 +1330,7 @@ var $K = {};
 
 // Globals
 $K.app = [];
-$K.version = '7.2.0';
+$K.version = '7.2.1';
 $K.options = {};
 $K.modules = {};
 $K.services = {};
@@ -1623,7 +1623,7 @@ App.prototype = {
     // api
     api: function(name)
     {
-        this.appapi.trigger(name, [].slice.call(arguments, 1));
+        return this.appapi.trigger(name, [].slice.call(arguments, 1));
     }
 };
 App.Module = function(app, $el, name, id)
@@ -1633,7 +1633,7 @@ App.Module = function(app, $el, name, id)
 
     // local
     this.eventTypes = ['click', 'mouseover', 'mouseout', 'mousedown', 'mouseup', 'mousemove',
-                       'keydown', 'keyup', 'submit', 'change', 'contextmenu', 'input'];
+                       'keydown', 'keyup', 'focus', 'submit', 'change', 'contextmenu', 'input'];
 
     // build
     return this._build($el, name, id);
@@ -3967,7 +3967,7 @@ $K.add('service', 'utils', {
     	_setPosition: function()
     	{
         	var elHeight = parseFloat(this.$element.css('height'));
-            var pos = this.$element.position();
+            var pos = this.$element.offset();
             var top = pos.top + elHeight;
             var left = pos.left;
             var height = parseFloat(this.$target.css('height'));

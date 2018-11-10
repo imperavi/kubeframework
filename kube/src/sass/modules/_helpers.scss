@@ -7,6 +7,9 @@
     top: 1px;
     color: $color-black;
     text-decoration: none;
+    &:active {
+        color: $color-black;
+    }
     &:hover {
         color: $color-link-hover;
     }
