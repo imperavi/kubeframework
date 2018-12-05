@@ -37,7 +37,13 @@
     	{
             var step = this.$input.attr('step');
             this.step = (step) ? parseFloat(step) : 1;
-    	},
+
+            for (var limit = 1, precision = 1; precision < 5; limit /= 10, precision++) {
+                if (this.step < limit) {
+                    this.fixedPrecision = precision
+                }
+            }
+        },
     	_buildMin: function()
     	{
             var min = this.$input.attr('min');
@@ -70,7 +76,7 @@
             var oldValue = this._getValue();
             var newVal = (this.max !== false && oldValue >= this.max) ? oldValue : oldValue + this.step;
 
-            this.$input.val(newVal);
+            this.$input.val(newVal.toFixed(this.fixedPrecision));
         },
         _decrease: function(e)
         {
@@ -83,7 +89,7 @@
             var oldValue = this._getValue();
             var newVal = (this.min !== false && oldValue <= this.min) ? oldValue : oldValue - this.step;
 
-            this.$input.val(newVal);
+            this.$input.val(newVal.toFixed(this.fixedPrecision));
     	}
     });
 })(Kube);
