@@ -210,7 +210,7 @@
     		}
 
     		var id = $active.attr('rel');
-            var value = $active.html();
+                var value = $active.text();
 
             if (this.$target.length !== 0)
             {
