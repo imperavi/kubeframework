@@ -332,7 +332,7 @@
         // EVENTS
         _handleKeyboard: function(e)
     	{
-    		if (e.which === 27) this._close();
+    		if (e.key === "Escape" || e.key == "Tab") this._close();
     	},
     	_enableEvents: function()
     	{
