@@ -802,7 +802,7 @@
     	},
     	_getDaysInMonth: function (year, month)
     	{
-    		return (((0 === (year%4)) && ((0 !== (year%100)) || (0 === (year%400)))) && (month === 1)) ? 29 : this.daysInMonth[month];
+    		return (((0 === (year%4)) && ((0 !== (year%100)) || (0 === (year%400)))) && (month === 2)) ? 29 : this.daysInMonth[month];
     	}
     });
 })(Kube);

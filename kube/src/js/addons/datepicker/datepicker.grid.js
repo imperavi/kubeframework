@@ -173,7 +173,8 @@
     	},
     	_getDaysInMonth: function (year, month)
     	{
-    		return (((0 === (year%4)) && ((0 !== (year%100)) || (0 === (year%400)))) && (month === 1)) ? 29 : this.daysInMonth[month];
+		// month isn't javascript's getMonth, where january is 0. january is 1, february is 2, and so on. so the leap year calculation has to be done, when month == 2
+    		return (((0 === (year%4)) && ((0 !== (year%100)) || (0 === (year%400)))) && (month === 2)) ? 29 : this.daysInMonth[month];
     	}
     });
 })(Kube);
